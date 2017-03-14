@@ -100,7 +100,7 @@
 
             // build the custom checkbox
             isEmpty = $('<div class="nf-checkbox string-check"/>').appendTo(stringCheckPanel);
-            $('<span class="string-check-label">&nbsp;Set empty string</span>').appendTo(stringCheckPanel);
+            $('<span class="string-check-label">&nbsp;' + nf._.msg('jquery-propertytable.SetEmptyString') + '</span>').appendTo(stringCheckPanel);
 
             var ok = $('<div class="button">Ok</div>').css({
                 'color': '#fff',
@@ -111,7 +111,7 @@
                 }, function () {
                     $(this).css('background', '#728E9B');
                 }).on('click', scope.save);
-            var cancel = $('<div class="secondary-button">Cancel</div>').css({
+            var cancel = $('<div class="secondary-button">' + nf._.msg('jquery-propertytable.Cancel') + '</div>').css({
                 'color': '#004849',
                 'background': '#E3E8EB'
             }).hover(
@@ -329,9 +329,9 @@
 
             // build the custom checkbox
             isEmpty = $('<div class="nf-checkbox string-check"/>').appendTo(stringCheckPanel);
-            $('<span class="string-check-label">&nbsp;Set empty string</span>').appendTo(stringCheckPanel);
+            $('<span class="string-check-label">&nbsp;' + nf._.msg('jquery-propertytable.SetEmptyString') + '</span>').appendTo(stringCheckPanel);
 
-            var ok = $('<div class="button">Ok</div>').css({
+            var ok = $('<div class="button">' + nf._.msg('jquery-propertytable.Ok') + '</div>').css({
                 'color': '#fff',
                 'background': '#728E9B'
             }).hover(
@@ -340,7 +340,7 @@
                 }, function () {
                     $(this).css('background', '#728E9B');
                 }).on('click', scope.save);
-            var cancel = $('<div class="secondary-button">Cancel</div>').css({
+            var cancel = $('<div class="secondary-button">' + nf._.msg('jquery-propertytable.Cancel') + '</div>').css({
                 'color': '#004849',
                 'background': '#E3E8EB'
             }).hover(
@@ -519,7 +519,7 @@
             var options = [];
             if (propertyDescriptor.required === false) {
                 options.push({
-                    text: 'No value',
+                    text: nf._.msg('jquery-propertytable.NoValueSet'),
                     value: null,
                     optionClass: 'unset'
                 });
@@ -539,7 +539,7 @@
             // ensure the options there is at least one option
             if (options.length === 0) {
                 options.push({
-                    text: 'No value',
+                    text: nf._.msg('jquery-propertytable.NoValueSet'),
                     value: null,
                     optionClass: 'unset',
                     disabled: true
@@ -549,7 +549,7 @@
             // if this descriptor identifies a controller service, provide a way to create one
             if (nf.Common.isDefinedAndNotNull(propertyDescriptor.identifiesControllerService)) {
                 options.push({
-                    text: 'Create new service...',
+                    text: nf._.msg('jquery-propertytable.Message3'),
                     value: undefined,
                     optionClass: 'unset'
                 });
@@ -579,7 +579,7 @@
                 'width': ((position.width - 16) < 212) ? 212 : (position.width - 16) + 'px'}).appendTo(wrapper);
 
             // add buttons for handling user input
-            var cancel = $('<div class="secondary-button">Cancel</div>').css({
+            var cancel = $('<div class="secondary-button">'+nf._.msg('jquery-propertytable.Cancel')+'</div>').css({
                 'color': '#004849',
                 'background': '#E3E8EB'
             }).hover(
@@ -588,7 +588,7 @@
                 }, function () {
                     $(this).css('background', '#E3E8EB');
                 }).on('click', scope.cancel);
-            var ok = $('<div class="button">Ok</div>').css({
+            var ok = $('<div class="button">' + nf._.msg('jquery-propertytable.Ok') + '</div>').css({
                 'color': '#fff',
                 'background': '#728E9B'
             }).hover(
@@ -750,7 +750,7 @@
                     // ensure the options there is at least one option
                     if (options.length === 0) {
                         options.push({
-                            text: 'No value',
+                            text: nf._.msg('jquery-propertytable.NoValueSet'),
                             value: null,
                             optionClass: 'unset',
                             disabled: true
@@ -771,7 +771,7 @@
                         }
                     }).appendTo(wrapper);
 
-                    $('<div class="button">Ok</div>').css({
+                    $('<div class="button">' + nf._.msg('jquery-propertytable.Ok') + '</div>').css({
                         'margin': '0 0 0 5px',
                         'float': 'left',
                         'color': '#fff',
@@ -844,7 +844,7 @@
                     };
 
                     // add an ok button that will remove the entire pop up
-                    var ok = $('<div class="button">Ok</div>').css({
+                    var ok = $('<div class="button">' + nf._.msg('jquery-propertytable.Ok') + '</div>').css({
                         'margin': '0 0 0 5px',
                         'float': 'left',
                         'color': '#fff',
@@ -895,8 +895,8 @@
             // ensure there are some applicable controller services
             if (options.length === 0) {
                 nf.Dialog.showOkDialog({
-                    headerText: 'Controller Service',
-                    dialogContent: 'No controller service types found that are applicable for this property.'
+                    headerText: nf._.msg('jquery-propertytable.ControllerService'),
+                    dialogContent: nf._.msg('jquery-propertytable.Message2')
                 });
             } else {
                 var newControllerServiceDialogMarkup =
@@ -909,13 +909,13 @@
                                 '</div>' +
                             '</div>' +
                             '<div>' +
-                                '<div class="setting-name">Tags</div>' +
+                                '<div class="setting-name">' + nf._.msg('jquery-propertytable.Tags') + '</div>' +
                                 '<div class="setting-field">' +
                                     '<div class="new-inline-controller-service-tags"></div>' +
                                 '</div>' +
                             '</div>' +
                             '<div>' +
-                                '<div class="setting-name">Description</div>' +
+                                '<div class="setting-name">' + nf._.msg('jquery-propertytable.Description') + '</div>' +
                                 '<div class="setting-field">' +
                                     '<div class="new-inline-controller-service-description"></div>' +
                                 '</div>' +
@@ -947,10 +947,10 @@
                 });
 
                 newControllerServiceDialog.modal({
-                    headerText: 'Add Controller Service',
+                    headerText: nf._.msg('jquery-propertytable.AddControllerService'),
                     scrollableContentStyle: 'scrollable',
                     buttons: [{
-                        buttonText: 'Create',
+                        buttonText: nf._.msg('jquery-propertytable.Create'),
                         color: {
                             base: '#728E9B',
                             hover: '#004849',
@@ -963,7 +963,7 @@
                         }
                     },
                         {
-                            buttonText: 'Cancel',
+                            buttonText: nf._.msg('jquery-propertytable.Cancel'),
                             color: {
                                 base: '#E3E8EB',
                                 hover: '#C7D2D7',
@@ -1079,7 +1079,7 @@
 
                 // determine if the property is sensitive
                 if (nf.Common.isSensitiveProperty(propertyDescriptor)) {
-                    valueMarkup = '<span class="table-cell sensitive">Sensitive value set</span>';
+                    valueMarkup = '<span class="table-cell sensitive">' + nf._.msg('jquery-propertytable.SensitiveValueSet') + '</span>';
                 } else {
                     // if there are allowable values, attempt to swap out for the display name
                     var allowableValues = nf.Common.getAllowableValues(propertyDescriptor);
@@ -1094,13 +1094,13 @@
                     }
 
                     if (value === '') {
-                        valueMarkup = '<span class="table-cell blank">Empty string set</span>';
+                        valueMarkup = '<span class="table-cell blank">' + nf._.msg('jquery-propertytable.EmptyStringSet') + '</span>';
                     } else {
                         valueMarkup = '<div class="table-cell value"><pre class="ellipsis">' + nf.Common.escapeHtml(value) + '</pre></div>';
                     }
                 }
             } else {
-                valueMarkup = '<span class="unset">No value set</span>';
+                valueMarkup = '<span class="unset">' + nf._.msg('jquery-propertytable.NoValueSet') + '</span>';
             }
 
             // format the contents
@@ -1118,7 +1118,7 @@
             {
                 id: 'property',
                 field: 'displayName',
-                name: 'Property',
+                name: nf._.msg('jquery-propertytable.Property'),
                 sortable: false,
                 resizable: true,
                 rerenderOnResize: true,
@@ -1127,7 +1127,7 @@
             {
                 id: 'value',
                 field: 'value',
-                name: 'Value',
+                name: nf._.msg('jquery-propertytable.Value'),
                 sortable: false,
                 resizable: true,
                 cssClass: 'pointer',
@@ -1154,7 +1154,7 @@
                 $.each(propertyDescriptor.allowableValues, function (_, allowableValueEntity) {
                     var allowableValue = allowableValueEntity.allowableValue;
                     if (allowableValue.value === dataContext.value) {
-                        markup += '<div class="pointer go-to-service fa fa-long-arrow-right" title="Go To" style="margin-top: 2px" ></div>';
+                        markup += '<div class="pointer go-to-service fa fa-long-arrow-right" title="' + nf._.msg('jquery-propertytable.GoTo') + '" style="margin-top: 2px" ></div>';
                         return false;
                     }
                 });
@@ -1162,7 +1162,7 @@
 
             // allow user defined properties to be removed
             if (options.readOnly !== true && dataContext.type === 'userDefined') {
-                markup += '<div title="Delete" class="delete-property pointer fa fa-trash" style="margin-top: 2px" ></div>';
+                markup += '<div title="' + nf._.msg('jquery-propertytable.Delete') + '" class="delete-property pointer fa fa-trash" style="margin-top: 2px" ></div>';
             }
 
             return markup;
@@ -1503,7 +1503,7 @@
 
                     // build the component
                     var header = $('<div class="properties-header"></div>').appendTo(propertyTableContainer);
-                    $('<div class="required-property-note">Required field</div>').appendTo(header);
+                    $('<div class="required-property-note">' + nf._.msg('jquery-propertytable.RequiredField') + '</div>').appendTo(header);
 
                     // build the table
                     var table = $('<div class="property-table"></div>').appendTo(propertyTableContainer);
@@ -1515,7 +1515,7 @@
                             '<div id="new-property-dialog" class="dialog cancellable small-dialog hidden">' +
                                 '<div class="dialog-content">' +
                                     '<div>' +
-                                        '<div class="setting-name">Property name</div>' +
+                                        '<div class="setting-name">' + nf._.msg('jquery-propertytable.PropertyName') + '</div>' +
                                         '<div class="setting-field new-property-name-container">' +
                                             '<input class="new-property-name" type="text"/>' +
                                         '</div>' +
@@ -1527,10 +1527,10 @@
                         var newPropertyNameField = newPropertyDialog.find('input.new-property-name');
 
                         newPropertyDialog.modal({
-                            headerText: 'Add Property',
+                            headerText: nf._.msg('jquery-propertytable.AddProperty'),
                             scrollableContentStyle: 'scrollable',
                             buttons: [{
-                                buttonText: 'Ok',
+                                buttonText: nf._.msg('jquery-propertytable.Ok'),
                                 color: {
                                     base: '#728E9B',
                                     hover: '#004849',
@@ -1543,7 +1543,7 @@
                                 }
                             },
                                 {
-                                    buttonText: 'Cancel',
+                                    buttonText: nf._.msg('jquery-propertytable.Cancel'),
                                     color: {
                                         base: '#E3E8EB',
                                         hover: '#C7D2D7',
@@ -1617,8 +1617,8 @@
                                         propertyGrid.editActiveCell();
                                     } else {
                                         nf.Dialog.showOkDialog({
-                                            headerText: 'Property Exists',
-                                            dialogContent: 'A property with this name already exists.'
+                                            headerText: nf._.msg('jquery-propertytable.PropertyExists'),
+                                            dialogContent: nf._.msg('jquery-propertytable.Message0')
                                         });
 
                                         // select the existing properties row
@@ -1629,8 +1629,8 @@
                                 }
                             } else {
                                 nf.Dialog.showOkDialog({
-                                    headerText: 'Property Name',
-                                    dialogContent: 'Property name must be specified.'
+                                    headerText: nf._.msg('jquery-propertytable.PropertyName'),
+                                    dialogContent: nf._.msg('jquery-propertytable.Message1')
                                 });
                             }
 

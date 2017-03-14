@@ -59,7 +59,7 @@ nf.ng.Canvas.OperateCtrl = function () {
                     // configure the create template dialog
                     this.getElement().modal({
                         scrollableContentStyle: 'scrollable',
-                        headerText: 'Create Template'
+                        headerText: nf._.msg('nf-canvas-operate-controller.CreateTemplate')
                     });
                 },
 
@@ -124,12 +124,12 @@ nf.ng.Canvas.OperateCtrl = function () {
 
                                 // close the settings dialog
                                 nf.Dialog.showOkDialog({
-                                    headerText: 'Success',
-                                    dialogContent: 'Template successfully imported.'
+                                    headerText: nf._.msg('nf-canvas-operate-controller.SUCCESS'),
+                                    dialogContent: nf._.msg('nf-canvas-operate-controller.SuccessContent')
                                 });
                             } else {
                                 // import failed
-                                var status = 'Unable to import template. Please check the log for errors.';
+                                var status = nf._.msg('nf-canvas-operate-controller.Message1');
                                 if (response.documentElement.tagName === 'errorResponse') {
                                     // if a more specific error was given, use it
                                     var errorMessage = response.documentElement.getAttribute('statusText');
@@ -147,9 +147,9 @@ nf.ng.Canvas.OperateCtrl = function () {
                     
                     // configure the upload template dialog
                     this.getElement().modal({
-                        headerText: 'Upload Template',
+                        headerText: nf._.msg('nf-canvas-operate-controller.Upload'),
                         buttons: [{
-                            buttonText: 'Upload',
+                            buttonText: nf._.msg('nf-canvas-operate-controller.ButtonUpload'),
                             color: {
                                 base: '#728E9B',
                                 hover: '#004849',
@@ -161,14 +161,14 @@ nf.ng.Canvas.OperateCtrl = function () {
 
                                     // submit the template if necessary
                                     if (nf.Common.isBlank(selectedTemplate)) {
-                                        $('#upload-template-status').text('No template selected. Please browse to select a template.');
+                                        $('#upload-template-status').text(nf._.msg('nf-canvas-operate-controller.UploadTemplate'));
                                     } else {
                                         templateForm.submit();
                                     }
                                 }
                             }
                         }, {
-                            buttonText: 'Cancel',
+                            buttonText: nf._.msg('nf-canvas-operate-controller.Cancel'),
                             color: {
                                 base: '#E3E8EB',
                                 hover: '#C7D2D7',
@@ -258,9 +258,9 @@ nf.ng.Canvas.OperateCtrl = function () {
                     // configure the create fillcolor dialog
                     this.getElement().modal({
                         scrollableContentStyle: 'scrollable',
-                        headerText: 'Change Color',
+                        headerText: nf._.msg('nf-canvas-operate-controller.ChangeColor'),
                         buttons: [{
-                            buttonText: 'Apply',
+                            buttonText: nf._.msg('nf-canvas-operate-controller.Apply'),
                             color: {
                                 base: '#728E9B',
                                 hover: '#004849',
@@ -304,7 +304,7 @@ nf.ng.Canvas.OperateCtrl = function () {
                                             }).fail(function (xhr, status, error) {
                                                 if (xhr.status === 400 || xhr.status === 404 || xhr.status === 409) {
                                                     nf.Dialog.showOkDialog({
-                                                        headerText: 'Error',
+                                                        headerText: nf._.msg('nf-canvas-operate-controller.Error'),
                                                         dialogContent: nf.Common.escapeHtml(xhr.responseText)
                                                     });
                                                 }
@@ -320,7 +320,7 @@ nf.ng.Canvas.OperateCtrl = function () {
                             }
                         },
                             {
-                                buttonText: 'Cancel',
+                                buttonText: nf._.msg('nf-canvas-operate-controller.Cancel'),
                                 color: {
                                     base: '#E3E8EB',
                                     hover: '#C7D2D7',

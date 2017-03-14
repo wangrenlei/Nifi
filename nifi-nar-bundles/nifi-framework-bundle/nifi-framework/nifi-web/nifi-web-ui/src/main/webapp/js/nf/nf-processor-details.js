@@ -84,7 +84,7 @@ nf.ProcessorDetails = (function () {
 
             // configure the processor details dialog
             $('#processor-details').modal({
-                headerText: 'Processor Details',
+                headerText: nf._.msg('nf-processor-details.ProcessorDetails'),
                 scrollableContentStyle: 'scrollable',
                 handler: {
                     close: function () {
@@ -184,7 +184,7 @@ nf.ProcessorDetails = (function () {
                             createRelationshipOption(relationship);
                         });
                     } else {
-                        $('#read-only-auto-terminate-relationship-names').append('<div class="unset">This processor has no relationships.</div>');
+                        $('#read-only-auto-terminate-relationship-names').append('<div class="unset">'+nf._.msg('nf-processor-details.ThisProcessorHasNoRelationships')+'</div>');
                     }
                 }
             });
@@ -212,7 +212,7 @@ nf.ProcessorDetails = (function () {
                 $('#read-only-processor-properties').propertytable('loadProperties', processor.config.properties, processor.config.descriptors, history.propertyHistory);
 
                 var buttons = [{
-                    buttonText: 'Ok',
+                    buttonText: nf._.msg('nf-processor-details.Ok'),
                     color: {
                         base: '#728E9B',
                         hover: '#004849',
@@ -229,7 +229,7 @@ nf.ProcessorDetails = (function () {
                 // determine if we should show the advanced button
                 if (nf.Common.isDefinedAndNotNull(nf.CustomUi) && nf.Common.isDefinedAndNotNull(processor.config.customUiUrl) && processor.config.customUiUrl !== '') {
                     buttons.push({
-                        buttonText: 'Advanced',
+                        buttonText: nf._.msg('nf-processor-details.Advanced'),
                         clazz: 'fa fa-cog button-icon',
                         color: {
                             base: '#E3E8EB',
@@ -262,7 +262,7 @@ nf.ProcessorDetails = (function () {
             }).fail(function (xhr, status, error) {
                 if (xhr.status === 400 || xhr.status === 404 || xhr.status === 409) {
                     nf.Dialog.showOkDialog({
-                        headerText: 'Error',
+                        headerText: nf._.msg('nf-processor-details.Error'),
                         dialogContent: nf.Common.escapeHtml(xhr.responseText)
                     });
                 } else {

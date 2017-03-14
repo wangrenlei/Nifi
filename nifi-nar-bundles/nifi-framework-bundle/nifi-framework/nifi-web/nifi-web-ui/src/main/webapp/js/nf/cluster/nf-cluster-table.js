@@ -118,8 +118,8 @@ nf.ClusterTable = (function () {
     var promptForConnect = function (node) {
         // prompt to connect
         nf.Dialog.showYesNoDialog({
-            headerText: 'Connect Node',
-            dialogContent: 'Connect \'' + formatNodeAddress(node) + '\' to this cluster?',
+            headerText: nf._.msg('nf-cluster-table.Connect'),
+            dialogContent: nf._.msg('nf-cluster-table.Message1') + formatNodeAddress(node) + nf._.msg('nf-cluster-table.Message2'),
             yesHandler: function () {
                 connect(node.nodeId);
             }
@@ -163,8 +163,8 @@ nf.ClusterTable = (function () {
     var promptForDisconnect = function (node) {
         // prompt for disconnect
         nf.Dialog.showYesNoDialog({
-            headerText: 'Disconnect Node',
-            dialogContent: 'Disconnect \'' + formatNodeAddress(node) + '\' from the cluster?',
+            headerText: nf._.msg('nf-cluster-table.Disconnect'),
+            dialogContent: nf._.msg('nf-cluster-table.Message3') + formatNodeAddress(node) + nf._.msg('nf-cluster-table.Message4'),
             yesHandler: function () {
                 disconnect(node.nodeId);
             }
@@ -208,8 +208,8 @@ nf.ClusterTable = (function () {
     var promptForRemoval = function (node) {
         // prompt for disconnect
         nf.Dialog.showYesNoDialog({
-            headerText: 'Remove Node',
-            dialogContent: 'Remove \'' + formatNodeAddress(node) + '\' from the cluster?',
+            headerText: nf._.msg('nf-cluster-table.Remove'),
+            dialogContent: nf._.msg('nf-cluster-table.Message5') + formatNodeAddress(node) + nf._.msg('nf-cluster-table.Message5'),
             yesHandler: function () {
                 remove(node.nodeId);
             }
@@ -313,7 +313,7 @@ nf.ClusterTable = (function () {
                 });
                 $('<div></div>').append(nf.Common.formatUnorderedList(eventMessages)).appendTo(events);
             } else {
-                events.append('<div><span class="unset">None</span></div>');
+                events.append('<div><span class="unset">'+nf._.msg('nf-cluster-table.None')+'</span></div>');
             }
 
             // show the dialog
@@ -329,9 +329,9 @@ nf.ClusterTable = (function () {
             // initialize the user details dialog
             $('#node-details-dialog').modal({
                 scrollableContentStyle: 'scrollable',
-                headerText: 'Node Details',
+                headerText: nf._.msg('nf-cluster-table.NodeDetails'),
                 buttons: [{
-                    buttonText: 'Ok',
+                    buttonText: nf._.msg('nf-cluster-table.Ok'),
                     color: {
                         base: '#728E9B',
                         hover: '#004849',
@@ -361,10 +361,10 @@ nf.ClusterTable = (function () {
             // filter type
             $('#cluster-filter-type').combo({
                 options: [{
-                    text: 'by address',
+                    text: nf._.msg('nf-cluster-table.ByAddress'),
                     value: 'address'
                 }, {
-                    text: 'by status',
+                    text: nf._.msg('nf-cluster-table.ByStatus'),
                     value: 'status'
                 }],
                 select: function (option) {
@@ -379,7 +379,7 @@ nf.ClusterTable = (function () {
 
             // define a custom formatter for the more details column
             var moreDetailsFormatter = function (row, cell, value, columnDef, dataContext) {
-                return '<div title="View Details" class="pointer show-node-details fa fa-info-circle" style="margin-top: 2px;"></div>';
+                return '<div title="'+nf._.msg('nf-cluster-table.ViewDetails')+'" class="pointer show-node-details fa fa-info-circle" style="margin-top: 2px;"></div>';
             };
 
             // define a custom formatter for the run status column
@@ -406,12 +406,12 @@ nf.ClusterTable = (function () {
 
             var columnModel = [
                 {id: 'moreDetails', name: '&nbsp;', sortable: false, resizable: false, formatter: moreDetailsFormatter, width: 50, maxWidth: 50},
-                {id: 'node', field: 'node', name: 'Node Address', formatter: nodeFormatter, resizable: true, sortable: true},
-                {id: 'activeThreadCount', field: 'activeThreadCount', name: 'Active Thread Count', resizable: true, sortable: true, defaultSortAsc: false},
-                {id: 'queued', field: 'queued', name: '<span class="queued-title">Queue</span>&nbsp;/&nbsp;<span class="queued-size-title">Size</span>', resizable: true, sortable: true, defaultSortAsc: false},
-                {id: 'status', field: 'status', name: 'Status', formatter: statusFormatter, resizable: true, sortable: true},
-                {id: 'uptime', field: 'nodeStartTime', name: 'Uptime', formatter: valueFormatter, resizable: true, sortable: true, defaultSortAsc: false},
-                {id: 'heartbeat', field: 'heartbeat', name: 'Last Heartbeat', formatter: valueFormatter, resizable: true, sortable: true, defaultSortAsc: false}
+                {id: 'node', field: 'node', name: nf._.msg('nf-cluster-table.Node Address'), formatter: nodeFormatter, resizable: true, sortable: true},
+                {id: 'activeThreadCount', field: 'activeThreadCount', name: nf._.msg('nf-cluster-table.ActiveThreadCount'), resizable: true, sortable: true, defaultSortAsc: false},
+                {id: 'queued', field: 'queued', name: '<span class="queued-title">'+nf._.msg('nf-cluster-table.Queue')+'</span>&nbsp;/&nbsp;<span class="queued-size-title">'+nf._.msg('nf-cluster-table.Size')+'</span>', resizable: true, sortable: true, defaultSortAsc: false},
+                {id: 'status', field: 'status', name: nf._.msg('nf-cluster-table.Status'), formatter: statusFormatter, resizable: true, sortable: true},
+                {id: 'uptime', field: 'nodeStartTime', name: nf._.msg('nf-cluster-table.Uptime'), formatter: valueFormatter, resizable: true, sortable: true, defaultSortAsc: false},
+                {id: 'heartbeat', field: 'heartbeat', name: nf._.msg('nf-cluster-table.LastHeartbeat'), formatter: valueFormatter, resizable: true, sortable: true, defaultSortAsc: false}
             ];
 
             // only allow the admin to modify the cluster
@@ -430,9 +430,9 @@ nf.ClusterTable = (function () {
 
                     // return the appropriate markup
                     if (canConnect) {
-                        return '<div title="Connect" class="pointer prompt-for-connect fa fa-plug" style="margin-top: 2px;"></div>&nbsp;<div title="Delete" class="pointer prompt-for-removal fa fa-trash" style="margin-top: 2px;"></div>';
+                        return '<div title="'+nf._.msg('nf-cluster-table.Connect')+'" class="pointer prompt-for-connect fa fa-plug" style="margin-top: 2px;"></div>&nbsp;<div title="'+nf._.msg('nf-cluster-table.Delete')+'" class="pointer prompt-for-removal fa fa-trash" style="margin-top: 2px;"></div>';
                     } else if (canDisconnect) {
-                        return '<div title="Disconnect" class="pointer prompt-for-disconnect fa fa-power-off" style="margin-top: 2px;"></div>';
+                        return '<div title="'+nf._.msg('nf-cluster-table.Disconnect')+'" class="pointer prompt-for-disconnect fa fa-power-off" style="margin-top: 2px;"></div>';
                     } else {
                         return '<div style="width: 16px; height: 16px;">&nbsp;</div>';
                     }

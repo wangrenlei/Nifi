@@ -61,7 +61,7 @@ nf.ConnectionConfiguration = (function () {
 
                         // configure the button model
                         $('#connection-configuration').modal('setButtonModel', [{
-                            buttonText: 'Add',
+                            buttonText: nf._.msg('nf-connection-configuration.Add'),
                             color: {
                                 base: '#728E9B',
                                 hover: '#004849',
@@ -78,8 +78,8 @@ nf.ConnectionConfiguration = (function () {
                                     } else {
                                         // inform users that no relationships were selected
                                         nf.Dialog.showOkDialog({
-                                            headerText: 'Connection Configuration',
-                                            dialogContent: 'The connection must have at least one relationship selected.'
+                                            headerText: nf._.msg('nf-connection-configuration.ConnectionConfiguration'),
+                                            dialogContent: nf._.msg('nf-connection-configuration.Message0')
                                         });
                                     }
 
@@ -89,7 +89,7 @@ nf.ConnectionConfiguration = (function () {
                             }
                         },
                             {
-                                buttonText: 'Cancel',
+                                buttonText: nf._.msg('nf-connection-configuration.Cancel'),
                                 color: {
                                     base: '#E3E8EB',
                                     hover: '#C7D2D7',
@@ -107,8 +107,8 @@ nf.ConnectionConfiguration = (function () {
                     } else {
                         // there are no relationships for this processor
                         nf.Dialog.showOkDialog({
-                            headerText: 'Connection Configuration',
-                            dialogContent: '\'' + nf.Common.escapeHtml(processor.name) + '\' does not support any relationships.'
+                            headerText: nf._.msg('nf-connection-configuration.ConnectionConfiguration'),
+                            dialogContent: '\'' + nf.Common.escapeHtml(processor.name) + nf._.msg('nf-connection-configuration.Message1')
                         });
 
                         // reset the dialog
@@ -138,7 +138,7 @@ nf.ConnectionConfiguration = (function () {
                 connectionSourceDeferred.done(function () {
                     // configure the button model
                     $('#connection-configuration').modal('setButtonModel', [{
-                        buttonText: 'Add',
+                        buttonText: nf._.msg('nf-connection-configuration.Add'),
                         color: {
                             base: '#728E9B',
                             hover: '#004849',
@@ -155,7 +155,7 @@ nf.ConnectionConfiguration = (function () {
                         }
                     },
                         {
-                            buttonText: 'Cancel',
+                            buttonText: nf._.msg('nf-connection-configuration.Cancel'),
                             color: {
                                 base: '#E3E8EB',
                                 hover: '#C7D2D7',
@@ -322,14 +322,14 @@ nf.ConnectionConfiguration = (function () {
 
                     deferred.resolve();
                 } else {
-                    var message = '\'' + nf.Common.escapeHtml(processGroupName) + '\' does not have any output ports.';
+                    var message = '\'' + nf.Common.escapeHtml(processGroupName) + nf._.msg('nf-connection-configuration.Message2');
                     if (nf.Common.isEmpty(processGroupContents.outputPorts) === false) {
-                        message = 'Not authorized for any output ports in \'' + nf.Common.escapeHtml(processGroupName) + '\'.';
+                        message = nf._.msg('nf-connection-configuration.Message5') + nf.Common.escapeHtml(processGroupName) + '\'.';
                     }
 
                     // there are no output ports for this process group
                     nf.Dialog.showOkDialog({
-                        headerText: 'Connection Configuration',
+                        headerText: nf._.msg('nf-connection-configuration.ConnectionConfiguration'),
                         dialogContent: message
                     });
 
@@ -405,8 +405,8 @@ nf.ConnectionConfiguration = (function () {
                 } else {
                     // there are no relationships for this processor
                     nf.Dialog.showOkDialog({
-                        headerText: 'Connection Configuration',
-                        dialogContent: '\'' + nf.Common.escapeHtml(remoteProcessGroup.name) + '\' does not have any output ports.'
+                        headerText: nf._.msg('nf-connection-configuration.ConnectionConfiguration'),
+                        dialogContent: '\'' + nf.Common.escapeHtml(remoteProcessGroup.name) + nf._.msg('nf-connection-configuration.Message2')
                     });
 
                     // reset the dialog
@@ -554,8 +554,8 @@ nf.ConnectionConfiguration = (function () {
                 } else {
                     // there are no relationships for this processor
                     nf.Dialog.showOkDialog({
-                        headerText: 'Connection Configuration',
-                        dialogContent: '\'' + nf.Common.escapeHtml(processGroupName) + '\' does not have any input ports.'
+                        headerText: nf._.msg('nf-connection-configuration.ConnectionConfiguration'),
+                        dialogContent: '\'' + nf.Common.escapeHtml(processGroupName) + nf._.msg('nf-connection-configuration.Message4')
                     });
 
                     // reset the dialog
@@ -630,8 +630,8 @@ nf.ConnectionConfiguration = (function () {
                 } else {
                     // there are no relationships for this processor
                     nf.Dialog.showOkDialog({
-                        headerText: 'Connection Configuration',
-                        dialogContent: '\'' + nf.Common.escapeHtml(remoteProcessGroup.name) + '\' does not have any input ports.'
+                        headerText: nf._.msg('nf-connection-configuration.ConfigureConnection'),
+                        dialogContent: '\'' + nf.Common.escapeHtml(remoteProcessGroup.name) + nf._.msg('nf-connection-configuration.Message4')
                     });
 
                     // reset the dialog
@@ -996,7 +996,7 @@ nf.ConnectionConfiguration = (function () {
             }).fail(function (xhr, status, error) {
                 if (xhr.status === 400 || xhr.status === 404 || xhr.status === 409) {
                     nf.Dialog.showOkDialog({
-                        headerText: 'Connection Configuration',
+                        headerText: nf._.msg('nf-connection-configuration.ConnectionConfiguration'),
                         dialogContent: nf.Common.escapeHtml(xhr.responseText),
                     });
                 } else {
@@ -1042,18 +1042,18 @@ nf.ConnectionConfiguration = (function () {
 
         // validate the settings
         if (nf.Common.isBlank($('#flow-file-expiration').val())) {
-            errors.push('File expiration must be specified');
+            errors.push(nf._.msg('nf-connection-configuration.flow-file-expiration'));
         }
         if (!$.isNumeric($('#back-pressure-object-threshold').val())) {
-            errors.push('Back pressure object threshold must be an integer value');
+            errors.push(nf._.msg('nf-connection-configuration.back-pressure-object-threshold'));
         }
         if (nf.Common.isBlank($('#back-pressure-data-size-threshold').val())) {
-            errors.push('Back pressure data size threshold must be specified');
+            errors.push(nf._.msg('nf-connection-configuration.back-pressure-data-size-threshold'));
         }
 
         if (errors.length > 0) {
             nf.Dialog.showOkDialog({
-                headerText: 'Connection Configuration',
+                headerText: nf._.msg('nf-connection-configuration.ConnectionConfiguration'),
                 dialogContent: nf.Common.formatUnorderedList(errors)
             });
             return false;
@@ -1134,7 +1134,7 @@ nf.ConnectionConfiguration = (function () {
             // initialize the configure connection dialog
             $('#connection-configuration').modal({
                 scrollableContentStyle: 'scrollable',
-                headerText: 'Configure Connection',
+                headerText: nf._.msg('nf-connection-configuration.ConfigureConnection'),
                 handler: {
                     close: function () {
                         // reset the dialog on close
@@ -1152,10 +1152,10 @@ nf.ConnectionConfiguration = (function () {
                 selectedTabStyle: 'selected-tab',
                 scrollableTabContentStyle: 'scrollable',
                 tabs: [{
-                    name: 'Details',
+                    name: nf._.msg('nf-connection-configuration.Detail'),
                     tabContentId: 'connection-details-tab-content'
                 }, {
-                    name: 'Settings',
+                    name: nf._.msg('nf-connection-configuration.Setting'),
                     tabContentId: 'connection-settings-tab-content'
                 }]
             });
@@ -1341,7 +1341,7 @@ nf.ConnectionConfiguration = (function () {
 
                     // configure the button model
                     $('#connection-configuration').modal('setButtonModel', [{
-                        buttonText: 'Apply',
+                        buttonText: nf._.msg('nf-connection-configuration.Apply'),
                         color: {
                             base: '#728E9B',
                             hover: '#004849',
@@ -1364,8 +1364,8 @@ nf.ConnectionConfiguration = (function () {
                                     } else {
                                         // inform users that no relationships were selected and the source is a processor
                                         nf.Dialog.showOkDialog({
-                                            headerText: 'Connection Configuration',
-                                            dialogContent: 'The connection must have at least one relationship selected.'
+                                            headerText: nf._.msg('nf-connection-configuration.ConnectionConfiguration'),
+                                            dialogContent: nf._.msg('nf-connection-configuration.Message0')
                                         });
 
                                         // reject the deferred
@@ -1386,7 +1386,7 @@ nf.ConnectionConfiguration = (function () {
                         }
                     },
                         {
-                            buttonText: 'Cancel',
+                            buttonText: nf._.msg('nf-connection-configuration.Cancel'),
                             color: {
                                 base: '#E3E8EB',
                                 hover: '#C7D2D7',

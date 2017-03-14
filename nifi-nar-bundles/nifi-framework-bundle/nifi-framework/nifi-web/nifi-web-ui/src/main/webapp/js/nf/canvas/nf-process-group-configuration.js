@@ -76,8 +76,8 @@ nf.ProcessGroupConfiguration = (function () {
 
             // show the result dialog
             nf.Dialog.showOkDialog({
-                headerText: 'Process Group Configuration',
-                dialogContent: 'Process group configuration successfully saved.'
+                headerText: nf._.msg('nf-process-group-configuration.ConfigureProcessGroup'),
+                dialogContent: nf._.msg('nf-process-group-configuration.Message1')
             });
 
             // update the click listener for the updated revision
@@ -224,10 +224,10 @@ nf.ProcessGroupConfiguration = (function () {
                 selectedTabStyle: 'selected-tab',
                 scrollableTabContentStyle: 'scrollable',
                 tabs: [{
-                    name: 'General',
+                    name: nf._.msg('nf-process-group-configuration.General'),
                     tabContentId: 'general-process-group-configuration-tab-content'
                 }, {
-                    name: 'Controller Services',
+                    name: nf._.msg('nf-process-group-configuration.ControllerService'),
                     tabContentId: 'process-group-controller-services-tab-content'
                 }],
                 select: function () {
@@ -235,7 +235,7 @@ nf.ProcessGroupConfiguration = (function () {
                     var canWrite = nf.Common.isDefinedAndNotNull(processGroup) ? processGroup.permissions.canWrite : false;
 
                     var tab = $(this).text();
-                    if (tab === 'General') {
+                    if (tab === nf._.msg('nf-process-group-configuration.General')) {
                         $('#add-process-group-configuration-controller-service').hide();
 
                         if (canWrite) {

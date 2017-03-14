@@ -76,7 +76,7 @@ nf.Draggable = (function () {
                 }).fail(function (xhr, status, error) {
                     if (xhr.status === 400 || xhr.status === 404 || xhr.status === 409) {
                         nf.Dialog.showOkDialog({
-                            headerText: 'Component Position',
+                            headerText: nf._.msg('nf-draggable.ComponentPosition'),
                             dialogContent: nf.Common.escapeHtml(xhr.responseText)
                         });
                     } else {
@@ -130,7 +130,7 @@ nf.Draggable = (function () {
                 }).fail(function (xhr, status, error) {
                     if (xhr.status === 400 || xhr.status === 404 || xhr.status === 409) {
                         nf.Dialog.showOkDialog({
-                            headerText: 'Component Position',
+                            headerText: nf._.msg('nf-draggable.ComponentPosition'),
                             dialogContent: nf.Common.escapeHtml(xhr.responseText)
                         });
                     } else {
@@ -148,8 +148,8 @@ nf.Draggable = (function () {
         // ensure every component is writable
         if (nf.CanvasUtils.canModify(selectedConnections) === false || nf.CanvasUtils.canModify(selectedComponents) === false) {
             nf.Dialog.showOkDialog({
-                headerText: 'Component Position',
-                dialogContent: 'Must be authorized to modify every component selected.'
+                headerText: nf._.msg('nf-draggable.ComponentPosition'),
+                dialogContent: nf._.msg('nf-draggable.Message2')
             });
             return;
         }
@@ -216,15 +216,15 @@ nf.Draggable = (function () {
 
         if (nf.CanvasUtils.canModify(selection) === false) {
             nf.Dialog.showOkDialog({
-                headerText: 'Component Position',
-                dialogContent: 'Must be authorized to modify every component selected.'
+                headerText: nf._.msg('nf-draggable.ComponentPosition'),
+                dialogContent: nf._.msg('nf-draggable.Message2')
             });
             return;
         }
         if (nf.CanvasUtils.canModify(group) === false) {
             nf.Dialog.showOkDialog({
-                headerText: 'Component Position',
-                dialogContent: 'Not authorized to modify the destination group.'
+                headerText: nf._.msg('nf-draggable.ComponentPosition'),
+                dialogContent: nf._.msg('nf-draggable.Message1')
             });
             return;
         }

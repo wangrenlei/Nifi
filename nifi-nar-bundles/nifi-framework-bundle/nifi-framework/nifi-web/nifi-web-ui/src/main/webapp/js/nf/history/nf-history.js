@@ -170,8 +170,10 @@ nf.History = (function () {
                         dataType: 'json'
                     }).done(function (response) {
                         var aboutDetails = response.about;
-                        var historyTitle = aboutDetails.title + ' History';
-
+//                      Mr.wang Edit  
+//                        var historyTitle = aboutDetails.title + nf._.msg('nf-history-table.History');
+                        var historyTitle = nf._.msg('nf-about')+ nf._.msg('nf-history-table.History');
+                        
                         // set the document title and the about title
                         document.title = historyTitle;
                         $('#history-header-text').text(historyTitle);

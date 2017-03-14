@@ -147,8 +147,8 @@ nf.Templates = (function () {
                             dataType: 'json'
                         }).done(function (response) {
                             var aboutDetails = response.about;
-                            var templatesTitle = aboutDetails.title + ' Templates';
-
+//                            var templatesTitle = aboutDetails.title + nf._.msg('nf-templates.Templates');
+                            var templatesTitle = nf._.msg('nf-about')+ nf._.msg('nf-templates.Templates');
                             // set the document title and the about title
                             document.title = templatesTitle;
                             $('#templates-header-text').text(templatesTitle);

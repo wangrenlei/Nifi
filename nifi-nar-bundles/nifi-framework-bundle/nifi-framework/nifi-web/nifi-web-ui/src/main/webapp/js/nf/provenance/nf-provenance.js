@@ -89,8 +89,8 @@ nf.ng.Provenance = function (provenanceTableCtrl) {
             dataType: 'json'
         }).done(function (response) {
             var aboutDetails = response.about;
-            var provenanceTitle = aboutDetails.title + ' Data Provenance';
-
+//            var provenanceTitle = aboutDetails.title + nf._.msg('nf-provenance.DataProvenance');
+            var provenanceTitle = nf._.msg('nf-about')+ nf._.msg('nf-provenance.DataProvenance');
             // store the controller name
             $('#nifi-controller-uri').text(aboutDetails.uri);
 

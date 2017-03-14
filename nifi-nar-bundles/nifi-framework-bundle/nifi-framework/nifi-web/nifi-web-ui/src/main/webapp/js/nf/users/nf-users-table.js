@@ -31,9 +31,9 @@ nf.UsersTable = (function () {
 
     var initUserDeleteDialog = function () {
         $('#user-delete-dialog').modal({
-            headerText: 'Delete Account',
+            headerText: nf._.msg('nf-users-table.DeleteAccount'),
             buttons: [{
-                buttonText: 'Delete',
+                buttonText: nf._.msg('nf-users-table.Delete'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -62,7 +62,7 @@ nf.UsersTable = (function () {
                     }
                 }
             }, {
-                buttonText: 'Cancel',
+                buttonText: nf._.msg('nf-users-table.Cancel'),
                 color: {
                     base: '#E3E8EB',
                     hover: '#C7D2D7',
@@ -369,9 +369,9 @@ nf.UsersTable = (function () {
      */
     var initUserDialog = function () {
         $('#user-dialog').modal({
-            headerText: 'User/Group',
+            headerText: nf._.msg('nf-users-table.UserGroup'),
             buttons: [{
-                buttonText: 'Ok',
+                buttonText: nf._.msg('nf-users-table.Ok'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -428,7 +428,7 @@ nf.UsersTable = (function () {
                     }
                 }
             }, {
-                buttonText: 'Cancel',
+                buttonText: nf._.msg('nf-users-table.Cancel'),
                 color: {
                     base: '#E3E8EB',
                     hover: '#C7D2D7',
@@ -481,7 +481,7 @@ nf.UsersTable = (function () {
         // filter type
         $('#users-filter-type').combo({
             options: [{
-                text: 'by user',
+                text: nf._.msg('nf-users-table.ByUser'),
                 value: 'identity'
             }],
             select: function (option) {
@@ -520,8 +520,8 @@ nf.UsersTable = (function () {
 
             // ensure user can modify the user
             if (nf.Common.canModifyTenants()) {
-                markup += '<div title="Edit" class="pointer edit-user fa fa-pencil" style="margin-right: 3px;"></div>';
-                markup += '<div title="Remove" class="pointer delete-user fa fa-trash"></div>';
+                markup += '<div title="'+nf._.msg('nf-users-table.Edit')+'" class="pointer edit-user fa fa-pencil" style="margin-right: 3px;"></div>';
+                markup += '<div title="'+nf._.msg('nf-users-table.Remove')+'" class="pointer delete-user fa fa-trash"></div>';
             }
 
             return markup;
@@ -529,7 +529,7 @@ nf.UsersTable = (function () {
 
         // initialize the templates table
         var usersColumns = [
-            {id: 'identity', name: 'User', sortable: true, resizable: true, formatter: identityFormatter},
+            {id: 'identity', name: nf._.msg('nf-users-table.User'), sortable: true, resizable: true, formatter: identityFormatter},
             {id: 'membersGroups', name: '&nbsp;', sortable: true, defaultSortAsc: false, resizable: true, formatter: membersGroupsFormatter},
             {id: 'actions', name: '&nbsp;', sortable: false, resizable: false, formatter: actionFormatter, width: 100, maxWidth: 100}
         ];

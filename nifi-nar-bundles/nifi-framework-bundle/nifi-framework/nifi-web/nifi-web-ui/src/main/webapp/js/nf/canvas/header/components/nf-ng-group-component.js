@@ -92,7 +92,7 @@ nf.ng.GroupComponent = function (serviceProvider) {
                 // configure the new process group dialog
                 this.getElement().modal({
                     scrollableContentStyle: 'scrollable',
-                    headerText: 'Add Process Group',
+                    headerText: nf._.msg('nf-group-component.AddProcessGroup'),
                     handler: {
                         close: function () {
                             $('#new-process-group-name').val('');
@@ -196,7 +196,7 @@ nf.ng.GroupComponent = function (serviceProvider) {
                 };
 
                 self.modal.update('setButtonModel', [{
-                    buttonText: 'Add',
+                    buttonText: nf._.msg('nf-group-component.Add'),
                     color: {
                         base: '#728E9B',
                         hover: '#004849',
@@ -207,7 +207,7 @@ nf.ng.GroupComponent = function (serviceProvider) {
                     }
                 },
                     {
-                        buttonText: 'Cancel',
+                        buttonText: nf._.msg('nf-group-component.Cancel'),
                         color: {
                             base: '#E3E8EB',
                             hover: '#C7D2D7',

@@ -29,9 +29,9 @@ nf.LabelConfiguration = (function () {
             // make the new property dialog draggable
             $('#label-configuration').modal({
                 scrollableContentStyle: 'scrollable',
-                headerText: 'Configure Label',
+                headerText: nf._.msg('nf-label-configuration.ConfigureLabel'),
                 buttons: [{
-                    buttonText: 'Apply',
+                    buttonText: nf._.msg('nf-label-configuration.Apply'),
                     color: {
                         base: '#728E9B',
                         hover: '#004849',
@@ -79,7 +79,7 @@ nf.LabelConfiguration = (function () {
                     }
                 },
                     {
-                        buttonText: 'Cancel',
+                        buttonText: nf._.msg('nf-label-configuration.Cancel'),
                         color: {
                             base: '#E3E8EB',
                             hover: '#C7D2D7',

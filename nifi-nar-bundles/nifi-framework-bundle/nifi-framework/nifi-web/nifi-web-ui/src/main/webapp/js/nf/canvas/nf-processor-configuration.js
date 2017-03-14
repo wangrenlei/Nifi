@@ -30,24 +30,24 @@ nf.ProcessorConfiguration = (function () {
      */
     var getSchedulingStrategies = function (processor) {
         var strategies = [{
-            text: 'Timer driven',
+            text: nf._.msg('nf-processor-configuration.TimerDriven'),
             value: 'TIMER_DRIVEN',
-            description: 'Processor will be scheduled to run on an interval defined by the run schedule.'
+            description: nf._.msg('nf-processor-configuration.Message1')
         }];
 
         // conditionally support event driven based on processor
         if (processor.supportsEventDriven === true) {
             strategies.push({
-                text: 'Event driven',
+                text: nf._.msg('nf-processor-configuration.EventDriven'),
                 value: 'EVENT_DRIVEN',
-                description: 'Processor will be scheduled to run when triggered by an event (e.g. a FlowFile enters an incoming queue). This scheduling strategy is experimental.'
+                description: nf._.msg('nf-processor-configuration.Message2')
             });
         } else if (processor.config['schedulingStrategy'] === 'EVENT_DRIVEN') {
             // the processor was once configured for event driven but no longer supports it
             strategies.push({
-                text: 'Event driven',
+                text: nf._.msg('nf-processor-configuration.EventDriven'),
                 value: 'EVENT_DRIVEN',
-                description: 'Processor will be scheduled to run when triggered by an event (e.g. a FlowFile enters an incoming queue). This scheduling strategy is experimental.',
+                description: nf._.msg('nf-processor-configuration.Message2'),
                 disabled: true
             });
         }
@@ -55,24 +55,24 @@ nf.ProcessorConfiguration = (function () {
         // conditionally support event driven
         if (nf.Canvas.isClustered()) {
             strategies.push({
-                text: 'On primary node',
+                text: nf._.msg('nf-processor-configuration.OnPrimaryNode'),
                 value: 'PRIMARY_NODE_ONLY',
-                description: 'Processor will be scheduled on the primary node on an interval defined by the run schedule.'
+                description: nf._.msg('nf-processor-configuration.Message3')
             });
         } else if (processor.config['schedulingStrategy'] === 'PRIMARY_NODE_ONLY') {
             strategies.push({
-                text: 'On primary node',
+                text: nf._.msg('nf-processor-configuration.OnPrimaryNode'),
                 value: 'PRIMARY_NODE_ONLY',
-                description: 'Processor will be scheduled on the primary node on an interval defined by the run schedule.',
+                description: nf._.msg('nf-processor-configuration.Message3'),
                 disabled: true
             });
         }
 
         // add an option for cron driven
         strategies.push({
-            text: 'CRON driven',
+            text: nf._.msg('nf-processor-configuration.CronDriven'),
             value: 'CRON_DRIVEN',
-            description: 'Processor will be scheduled to run on at specific times based on the specified CRON string.'
+            description: nf._.msg('nf-processor-configuration.Message5')
         });
 
         return strategies;
@@ -98,7 +98,7 @@ nf.ProcessorConfiguration = (function () {
 
             nf.Dialog.showOkDialog({
                 dialogContent: content,
-                headerText: 'Processor Configuration'
+                headerText: nf._.msg('nf-processor-configuration.ConfigureProcessor')
             });
         } else {
             nf.Common.handleAjaxError(xhr, status, error);
@@ -343,22 +343,22 @@ nf.ProcessorConfiguration = (function () {
 
         // ensure numeric fields are specified correctly
         if (nf.Common.isDefinedAndNotNull(config['concurrentlySchedulableTaskCount']) && !$.isNumeric(config['concurrentlySchedulableTaskCount'])) {
-            errors.push('Concurrent tasks must be an integer value');
+            errors.push(nf._.msg('nf-processor-configuration.Error1'));
         }
         if (nf.Common.isDefinedAndNotNull(config['schedulingPeriod']) && nf.Common.isBlank(config['schedulingPeriod'])) {
-            errors.push('Run schedule must be specified');
+            errors.push(nf._.msg('nf-processor-configuration.Error2'));
         }
         if (nf.Common.isBlank(config['penaltyDuration'])) {
-            errors.push('Penalty duration must be specified');
+            errors.push(nf._.msg('nf-processor-configuration.Error3'));
         }
         if (nf.Common.isBlank(config['yieldDuration'])) {
-            errors.push('Yield duration must be specified');
+            errors.push(nf._.msg('nf-processor-configuration.Error4'));
         }
 
         if (errors.length > 0) {
             nf.Dialog.showOkDialog({
                 dialogContent: nf.Common.formatUnorderedList(errors),
-                headerText: 'Processor Configuration'
+                headerText: nf._.msg('nf-processor-configuration.ConfigureProcessor')
             });
             return false;
         } else {
@@ -394,8 +394,8 @@ nf.ProcessorConfiguration = (function () {
             if (isSaveRequired()) {
                 // see if those changes should be saved
                 nf.Dialog.showYesNoDialog({
-                    headerText: 'Processor Configuration',
-                    dialogContent: 'Save changes before going to this Controller Service?',
+                    headerText: nf._.msg('nf-processor-configuration.ConfigureProcessor'),
+                    dialogContent: nf._.msg('nf-processor-configuration.Message6'),
                     noHandler: function () {
                         deferred.resolve();
                     },
@@ -458,16 +458,16 @@ nf.ProcessorConfiguration = (function () {
                 selectedTabStyle: 'selected-tab',
                 scrollableTabContentStyle: 'scrollable',
                 tabs: [{
-                    name: 'Settings',
+                    name: nf._.msg('nf-processor-configuration.Settings'),
                     tabContentId: 'processor-standard-settings-tab-content'
                 }, {
-                    name: 'Scheduling',
+                    name: nf._.msg('nf-processor-configuration.Scheduling'),
                     tabContentId: 'processor-scheduling-tab-content'
                 }, {
-                    name: 'Properties',
+                    name: nf._.msg('nf-processor-configuration.Properties'),
                     tabContentId: 'processor-properties-tab-content'
                 }, {
-                    name: 'Comments',
+                    name: nf._.msg('nf-processor-configuration.Comments'),
                     tabContentId: 'processor-comments-tab-content'
                 }],
                 select: function () {
@@ -475,7 +475,7 @@ nf.ProcessorConfiguration = (function () {
                     nf.UniversalCapture.removeAllPropertyDetailDialogs();
 
                     // update the processor property table size in case this is the first time its rendered
-                    if ($(this).text() === 'Properties') {
+                    if ($(this).text() === nf._.msg('nf-processor-configuration.Properties')) {
                         $('#processor-properties').propertytable('resetTableSize');
                     }
 
@@ -493,7 +493,7 @@ nf.ProcessorConfiguration = (function () {
             // initialize the processor configuration dialog
             $('#processor-configuration').modal({
                 scrollableContentStyle: 'scrollable',
-                headerText: 'Configure Processor',
+                headerText: nf._.msg('nf-processor-configuration.ConfigureProcessor'),
                 handler: {
                     close: function () {
                         // empty the relationship list
@@ -514,16 +514,16 @@ nf.ProcessorConfiguration = (function () {
             // initialize the bulletin combo
             $('#bulletin-level-combo').combo({
                 options: [{
-                    text: 'DEBUG',
+                    text: nf._.msg('nf-processor-configuration.Debug'),
                     value: 'DEBUG'
                 }, {
-                    text: 'INFO',
+                    text: nf._.msg('nf-processor-configuration.Info'),
                     value: 'INFO'
                 }, {
-                    text: 'WARN',
+                    text: nf._.msg('nf-processor-configuration.Warn'),
                     value: 'WARN'
                 }, {
-                    text: 'ERROR',
+                    text: nf._.msg('nf-processor-configuration.Error'),
                     value: 'ERROR'
                 }]
             });
@@ -702,11 +702,11 @@ nf.ProcessorConfiguration = (function () {
                             createRelationshipOption(relationship);
                         });
                     } else {
-                        $('#auto-terminate-relationship-names').append('<div class="unset">This processor has no relationships.</div>');
+                        $('#auto-terminate-relationship-names').append('<div class="unset">'+nf._.msg('nf-processor-configuration.ThisProcessorHasNoRelationships')+'</div>');
                     }
 
                     var buttons = [{
-                        buttonText: 'Apply',
+                        buttonText: nf._.msg('nf-processor-configuration.Apply'),
                         color: {
                             base: '#728E9B',
                             hover: '#004849',
@@ -732,7 +732,7 @@ nf.ProcessorConfiguration = (function () {
                         }
                     },
                         {
-                            buttonText: 'Cancel',
+                            buttonText: nf._.msg('nf-processor-configuration.Cancel'),
                             color: {
                                 base: '#E3E8EB',
                                 hover: '#C7D2D7',
@@ -748,7 +748,7 @@ nf.ProcessorConfiguration = (function () {
                     // determine if we should show the advanced button
                     if (nf.Common.isDefinedAndNotNull(processor.config.customUiUrl) && processor.config.customUiUrl !== '') {
                         buttons.push({
-                            buttonText: 'Advanced',
+                            buttonText: nf._.msg('nf-processor-configuration.Advanced'),
                             clazz: 'fa fa-cog button-icon',
                             color: {
                                 base: '#E3E8EB',
@@ -778,8 +778,8 @@ nf.ProcessorConfiguration = (function () {
                                     if (isSaveRequired()) {
                                         // see if those changes should be saved
                                         nf.Dialog.showYesNoDialog({
-                                            headerText: 'Save',
-                                            dialogContent: 'Save changes before opening the advanced configuration?',
+                                            headerText: nf._.msg('nf-processor-configuration.Save'),
+                                            dialogContent: nf._.msg('nf-processor-configuration.Message7'),
                                             noHandler: openCustomUi,
                                             yesHandler: function () {
                                                 saveProcessor(processor).done(function (deferred) {

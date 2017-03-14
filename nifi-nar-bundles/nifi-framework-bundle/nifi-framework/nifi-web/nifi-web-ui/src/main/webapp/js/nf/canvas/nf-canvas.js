@@ -91,8 +91,8 @@ $(document).ready(function () {
         //initialize toolbox components tooltips
         $('.component-button').qtip($.extend({}, nf.Common.config.tooltipConfig));
     } else {
-        $('#message-title').text('Unsupported Browser');
-        $('#message-content').text('Flow graphs are shown using SVG. Please use a browser that supports rendering SVG.');
+        $('#message-title').text(nf._.msg('nf-canvas.Browser'));
+        $('#message-content').text(nf._.msg('nf-canvas.Message1'));
 
         // show the error pane
         $('#message-pane').show();
@@ -765,8 +765,8 @@ nf.Canvas = (function () {
          */
         showDisconnectedFromClusterMessage: function () {
             nf.Dialog.showOkDialog({
-                headerText: 'Cluster Connection',
-                dialogContent: 'This node is currently not connected to the cluster. Any modifications to the data flow made here will not replicate across the cluster.'
+                headerText: nf._.msg('nf-canvas.ClusterConn'),
+                dialogContent: nf._.msg('nf-canvas.Message2')
             });
         },
 
@@ -775,8 +775,8 @@ nf.Canvas = (function () {
          */
         showConnectedToClusterMessage: function () {
             nf.Dialog.showOkDialog({
-                headerText: 'Cluster Connection',
-                dialogContent: 'This node just joined the cluster. Any modifications to the data flow made here will replicate across the cluster.'
+                headerText: nf._.msg('nf-canvas.ClusterConn'),
+                dialogContent: nf._.msg('nf-canvas.Message3')
             });
         },
 

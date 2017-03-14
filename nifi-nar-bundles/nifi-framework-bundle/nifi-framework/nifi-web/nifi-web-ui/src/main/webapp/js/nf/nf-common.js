@@ -153,7 +153,7 @@ nf.Common = (function () {
                         if ($('#current-user').text() !== nf.Common.ANONYMOUS_USER_TEXT && !$('#anonymous-user-alert').is(':visible')) {
                             // if the token will expire before the next interval minus some bonus time, notify the user to re-login
                             $('#anonymous-user-alert').show().qtip($.extend({}, nf.Common.config.tooltipConfig, {
-                                content: 'Your session will expire soon. Please log in again to avoid being automatically logged out.',
+                                content: nf._.msg('nf-common.Message15'),
                                 position: {
                                     my: 'top right',
                                     at: 'bottom left'
@@ -182,7 +182,7 @@ nf.Common = (function () {
                         
             // alert user's of anonymous access
             anonymousUserAlert.show().qtip($.extend({}, nf.Common.config.tooltipConfig, {
-                content: 'You are accessing with limited authority. Log in or request an account to access with additional authority granted to you by an administrator.',
+                content: nf._.msg('nf-common.Message16'),
                 position: {
                     my: 'top right',
                     at: 'bottom left'
@@ -381,15 +381,15 @@ nf.Common = (function () {
         handleAjaxError: function (xhr, status, error) {
             if (status === 'canceled') {
                 if ($('#splash').is(':visible')) {
-                    $('#message-title').text('Session Expired');
-                    $('#message-content').text('Your session has expired. Please reload to log in again.');
+                    $('#message-title').text(nf._.msg('nf-common.SessionExpired'));
+                    $('#message-content').text(nf._.msg('nf-common.Message17'));
 
                     // show the error pane
                     $('#message-pane').show();
                 } else {
                     nf.Dialog.showOkDialog({
-                        headerText: 'Session Expired',
-                        dialogContent: 'Your session has expired. Please press Ok to log in again.',
+                        headerText: nf._.msg('nf-common.SessionExpired'),
+                        dialogContent: nf._.msg('nf-common.Message18'),
                         okHandler: function () {
                             window.location = '/nifi';
                         }
@@ -404,15 +404,15 @@ nf.Common = (function () {
             // if an error occurs while the splash screen is visible close the canvas show the error message
             if ($('#splash').is(':visible')) {
                 if (xhr.status === 401) {
-                    $('#message-title').text('Unauthorized');
+                    $('#message-title').text(nf._.msg('nf-common.Unauthorized'));
                 } else if (xhr.status === 403) {
-                    $('#message-title').text('Access Denied');
+                    $('#message-title').text(nf._.msg('nf-common.AccessDenied'));
                 } else {
-                    $('#message-title').text('An unexpected error has occurred');
+                    $('#message-title').text(nf._.msg('nf-common.Message26'));
                 }
 
                 if ($.trim(xhr.responseText) === '') {
-                    $('#message-content').text('Please check the logs.');
+                    $('#message-content').text(nf._.msg('nf-common.Message2'));
                 } else {
                     $('#message-content').text(xhr.responseText);
                 }
@@ -428,47 +428,47 @@ nf.Common = (function () {
             // status code 400, 403, 404, and 409 are expected response codes for common errors.
             if (xhr.status === 400 || xhr.status === 403 || xhr.status === 404 || xhr.status === 409 || xhr.status === 503) {
                 nf.Dialog.showOkDialog({
-                    headerText: 'Error',
+                    headerText: nf._.msg('nf-common.Error'),
                     dialogContent: nf.Common.escapeHtml(xhr.responseText)
                 });
             } else {
                 if (xhr.status < 99 || xhr.status === 12007 || xhr.status === 12029) {
-                    var content = 'Please ensure the application is running and check the logs for any errors.';
+                	var content = nf._.msg('nf-common.Message23');
                     if (nf.Common.isDefinedAndNotNull(status)) {
                         if (status === 'timeout') {
-                            content = 'Request has timed out. Please ensure the application is running and check the logs for any errors.';
+                            content = nf._.msg('nf-common.Message20');
                         } else if (status === 'abort') {
-                            content = 'Request has been aborted.';
+                            content = nf._.msg('nf-common.Message21');
                         } else if (status === 'No Transport') {
-                            content = 'Request transport mechanism failed. Please ensure the host where the application is running is accessible.';
+                            content = nf._.msg('nf-common.Message22');
                         }
                     }
-                    $('#message-title').text('Unable to communicate with NiFi');
+                    $('#message-title').text(nf._.msg('nf-common.Message23'));
                     $('#message-content').text(content);
                 } else if (xhr.status === 401) {
-                    $('#message-title').text('Unauthorized');
+                    $('#message-title').text(nf._.msg('nf-common.Unauthorized'));
                     if ($.trim(xhr.responseText) === '') {
-                        $('#message-content').text('Authentication is required to use this NiFi.');
+                        $('#message-content').text(nf._.msg('nf-common.Message25'));
                     } else {
                         $('#message-content').text(xhr.responseText);
                     }
                 } else if (xhr.status === 500) {
-                    $('#message-title').text('An unexpected error has occurred');
+                    $('#message-title').text(nf._.msg('nf-common.Message26'));
                     if ($.trim(xhr.responseText) === '') {
-                        $('#message-content').text('An error occurred communicating with the application core. Please check the logs and fix any configuration issues before restarting.');
+                        $('#message-content').text(nf._.msg('nf-common.Message9'));
                     } else {
                         $('#message-content').text(xhr.responseText);
                     }
                 } else if (xhr.status === 200 || xhr.status === 201) {
-                    $('#message-title').text('Parse Error');
+                    $('#message-title').text(nf._.msg('nf-common.ParseError'));
                     if ($.trim(xhr.responseText) === '') {
-                        $('#message-content').text('Unable to interpret response from NiFi.');
+                        $('#message-content').text(nf._.msg('nf-common.Message10'));
                     } else {
                         $('#message-content').text(xhr.responseText);
                     }
                 } else {
-                    $('#message-title').text(xhr.status + ': Unexpected Response');
-                    $('#message-content').text('An unexpected error has occurred. Please check the logs.');
+                    $('#message-title').text(xhr.status + nf._.msg('nf-common.Message11'));
+                    $('#message-content').text(nf._.msg('nf-common.Message12'));
                 }
 
                 // show the error pane
@@ -531,9 +531,9 @@ nf.Common = (function () {
          */
         populateField: function (target, value) {
             if (nf.Common.isUndefined(value) || nf.Common.isNull(value)) {
-                return $('#' + target).addClass('unset').text('No value previously set');
+                return $('#' + target).addClass('unset').text(nf._.msg('nf-common.Message13'));
             } else if (value === '') {
-                return $('#' + target).addClass('blank').text('Empty string previously set');
+                return $('#' + target).addClass('blank').text(nf._.msg('nf-common.Message14'));
             } else {
                 return $('#' + target).text(value);
             }
@@ -581,10 +581,10 @@ nf.Common = (function () {
                     tipContent.push(nf.Common.escapeHtml(propertyDescriptor.description));
                 }
                 if (!nf.Common.isBlank(propertyDescriptor.defaultValue)) {
-                    tipContent.push('<b>Default value:</b> ' + nf.Common.escapeHtml(propertyDescriptor.defaultValue));
+                    tipContent.push(nf._.msg('nf-summary-table.DefaultValue') + nf.Common.escapeHtml(propertyDescriptor.defaultValue));
                 }
                 if (!nf.Common.isBlank(propertyDescriptor.supportsEl)) {
-                    tipContent.push('<b>Supports expression language:</b> ' + nf.Common.escapeHtml(propertyDescriptor.supportsEl));
+                    tipContent.push(nf._.msg('nf-summary-table.SupportsExpressionLanguage') + nf.Common.escapeHtml(propertyDescriptor.supportsEl));
                 }
             }
 
@@ -594,7 +594,7 @@ nf.Common = (function () {
                     $.each(propertyHistory.previousValues, function (_, previousValue) {
                         history.push('<li>' + nf.Common.escapeHtml(previousValue.previousValue) + ' - ' + nf.Common.escapeHtml(previousValue.timestamp) + ' (' + nf.Common.escapeHtml(previousValue.userIdentity) + ')</li>');
                     });
-                    tipContent.push('<b>History:</b><ul class="property-info">' + history.join('') + '</ul>');
+                    tipContent.push(nf._.msg('nf-summary-table.History') + history.join('') + '</ul>');
                 }
             }
 
@@ -623,12 +623,12 @@ nf.Common = (function () {
         formatValue: function (value) {
             if (nf.Common.isDefinedAndNotNull(value)) {
                 if (value === '') {
-                    return '<span class="blank" style="font-size: 13px; padding-top: 2px;">Empty string previously set</span>';
+                    return '<span class="blank" style="font-size: 13px; padding-top: 2px;">'+nf._.msg('nf-common.Message27')+'</span>';
                 } else {
                     return nf.Common.escapeHtml(value);
                 }
             } else {
-                return '<span class="unset" style="font-size: 13px; padding-top: 2px;">No value previously set</span>';
+                return '<span class="unset" style="font-size: 13px; padding-top: 2px;">'+nf._.msg('nf-common.Message28')+'</span>';
             }
         },
 
@@ -937,7 +937,7 @@ nf.Common = (function () {
             }
 
             // default to bytes
-            return parseFloat(dataSize).toFixed(2) + " bytes";
+            return parseFloat(dataSize).toFixed(2) + nf._.msg('nf-common.Bytes');
         },
 
         /**

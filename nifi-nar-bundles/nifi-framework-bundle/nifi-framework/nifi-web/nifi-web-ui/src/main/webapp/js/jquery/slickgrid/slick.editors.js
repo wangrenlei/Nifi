@@ -138,7 +138,7 @@
       if (isNaN($input.val())) {
         return {
           valid: false,
-          msg: "Please enter a valid integer"
+          msg: nf._.msg('slick.editors.Message1')
         };
       }
 
@@ -394,7 +394,7 @@
       if (isNaN(parseInt($input.val(), 10))) {
         return {
           valid: false,
-          msg: "Please enter a valid positive number"
+          msg: nf._.msg('slick.editors.Message2')
         };
       }
 

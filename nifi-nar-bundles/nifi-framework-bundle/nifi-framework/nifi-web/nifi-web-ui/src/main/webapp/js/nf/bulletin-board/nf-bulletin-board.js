@@ -77,16 +77,16 @@ nf.ng.BulletinBoardCtrl = function (serviceProvider) {
         // filter type
         $('#bulletin-board-filter-type').combo({
             options: [{
-                text: 'by message',
+                text: nf._.msg('nf-bulletin-board.ByMessage'),
                 value: 'message'
             }, {
-                text: 'by name',
+                text: nf._.msg('nf-bulletin-board.ByName'),
                 value: 'sourceName'
             }, {
-                text: 'by id',
+                text: nf._.msg('nf-bulletin-board.ById'),
                 value: 'sourceId'
             }, {
-                text: 'by group id',
+                text: nf._.msg('nf-bulletin-board.ById'),
                 value: 'groupId'
             }]
         });
@@ -98,8 +98,10 @@ nf.ng.BulletinBoardCtrl = function (serviceProvider) {
             dataType: 'json'
         }).done(function (response) {
             var aboutDetails = response.about;
-            var bulletinBoardTitle = aboutDetails.title + ' Bulletin Board';
-
+//          Mr.wang edit  
+//            var bulletinBoardTitle = aboutDetails.title + nf._.msg('nf-bulletin-board.BulletinBoard');
+            var bulletinBoardTitle = nf._.msg('nf-about')+ nf._.msg('nf-bulletin-board.BulletinBoard');
+            
             // set the document title and the about title
             document.title = bulletinBoardTitle;
             $('#bulletin-board-header-text').text(bulletinBoardTitle);
@@ -169,7 +171,7 @@ nf.ng.BulletinBoardCtrl = function (serviceProvider) {
         var refreshButton = $('#refresh-button');
         var bulletinContainer = $('#bulletin-board-container');
 
-        appendAndScroll(bulletinContainer, '<div class="bulletin-action">Auto refresh started</div>');
+        appendAndScroll(bulletinContainer, '<div class="bulletin-action">'+nf._.msg('nf-bulletin-board.Message3')+'</div>');
 
         // clear any error messages
         $('#bulletin-error-message').text('').hide();
@@ -183,7 +185,7 @@ nf.ng.BulletinBoardCtrl = function (serviceProvider) {
         var refreshButton = $('#refresh-button');
         var bulletinContainer = $('#bulletin-board-container');
 
-        appendAndScroll(bulletinContainer, '<div class="bulletin-action">Auto refresh stopped</div>');
+        appendAndScroll(bulletinContainer, '<div class="bulletin-action">'+nf._.msg('nf-bulletin-board.Message4')+'</div>');
 
         // reset state
         lastBulletin = null;
@@ -308,13 +310,13 @@ nf.ng.BulletinBoardCtrl = function (serviceProvider) {
 
                 // append filtering message if necessary
                 if (filterText !== filter || filterType !== filterOption.text) {
-                    var filterContent = $('<div class="bulletin-action"></div>').text('Filter ' + filterOption.text + ' matching \'' + filter + '\'');
+                    var filterContent = $('<div class="bulletin-action"></div>').text(nf._.msg('nf-bulletin-board.Message1') + filterOption.text + nf._.msg('nf-bulletin-board.Message2') + filter + '\'');
                     appendAndScroll(bulletinContainer, filterContent.get(0));
                     filterText = filter;
                     filterType = filterOption.text;
                 }
             } else if (filterText !== null) {
-                appendAndScroll(bulletinContainer, '<div class="bulletin-action">Filter removed</div>');
+                appendAndScroll(bulletinContainer, '<div class="bulletin-action">'+nf._.msg('nf-bulletin-board.Message1')+'</div>');
                 filterText = null;
                 filterType = null;
             }

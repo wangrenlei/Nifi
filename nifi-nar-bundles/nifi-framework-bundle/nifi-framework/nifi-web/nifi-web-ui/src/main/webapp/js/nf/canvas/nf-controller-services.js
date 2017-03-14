@@ -191,8 +191,8 @@ nf.ControllerServices = (function () {
         // ensure something was selected
         if (selectedServiceType === '') {
             nf.Dialog.showOkDialog({
-                headerText: 'Controller Service',
-                dialogContent: 'The type of controller service to create must be selected.'
+                headerText: nf._.msg('nf-controller-service.ControllerService'),
+                dialogContent: nf._.msg('nf-controller-service.Message14')
             });
         } else {
             addControllerService(controllerServicesUri, serviceTable, selectedServiceType);
@@ -254,8 +254,8 @@ nf.ControllerServices = (function () {
     var initNewControllerServiceDialog = function () {
         // initialize the processor type table
         var controllerServiceTypesColumns = [
-            {id: 'type', name: 'Type', field: 'label', sortable: false, resizable: true},
-            {id: 'tags', name: 'Tags', field: 'tags', sortable: false, resizable: true}
+            {id: 'type', name: nf._.msg('nf-controller-services.Type'), field: 'label', sortable: false, resizable: true},
+            {id: 'tags', name: nf._.msg('nf-controller-services.Tags'), field: 'tags', sortable: false, resizable: true}
         ];
 
         // initialize the dataview
@@ -281,7 +281,7 @@ nf.ControllerServices = (function () {
                 // set the controller service type description
                 if (nf.Common.isDefinedAndNotNull(controllerServiceType)) {
                     if (nf.Common.isBlank(controllerServiceType.description)) {
-                        $('#controller-service-type-description').attr('title', '').html('<span class="unset">No description specified</span>');
+                        $('#controller-service-type-description').attr('title', '').html('<span class="unset">'+nf._.msg('nf-controller-services.type-description')+'</span>');
                     } else {
                         $('#controller-service-type-description').html(controllerServiceType.description).ellipsis();
                     }
@@ -359,7 +359,7 @@ nf.ControllerServices = (function () {
 
         // initialize the controller service dialog
         $('#new-controller-service-dialog').modal({
-            headerText: 'Add Controller Service',
+            headerText: nf._.msg('nf-controller-service.AddControllerService'),
             scrollableContentStyle: 'scrollable',
             handler: {
                 close: function () {
@@ -509,10 +509,10 @@ nf.ControllerServices = (function () {
                 return '';
             }
             
-            var markup = '<div class="pointer view-controller-service fa fa-info-circle" title="View Details" style="margin-top: 5px; margin-right: 3px;" ></div>';
+            var markup = nf._.msg('nf-controller-services.viewDtails')+'<div class="pointer view-controller-service fa fa-info-circle" title="${markup}" style="margin-top: 5px; margin-right: 3px;" ></div>';
 
             // always include a button to view the usage
-            markup += '<div title="Usage" class="pointer controller-service-usage fa fa-book" style="margin-top: 5px; margin-right: 3px;" ></div>';
+            markup += nf._.msg('nf-controller-services.usage')+'<div title="${usage}" class="pointer controller-service-usage fa fa-book" style="margin-top: 5px; margin-right: 3px;" ></div>';
 
             var hasErrors = !nf.Common.isEmpty(dataContext.component.validationErrors);
             var hasBulletins = !nf.Common.isEmpty(dataContext.bulletins);
@@ -541,20 +541,20 @@ nf.ControllerServices = (function () {
             var icon = '', label = '';
             if (!nf.Common.isEmpty(dataContext.component.validationErrors)) {
                 icon = 'invalid fa fa-warning';
-                label = 'Invalid';
+                label = nf._.msg('nf-controller-services.Invalid');
             } else {
                 if (dataContext.component.state === 'DISABLED') {
                     icon = 'disabled icon icon-enable-false"';
-                    label = 'Disabled';
+                    label = nf._.msg('nf-controller-services.Disabled');
                 } else if (dataContext.component.state === 'DISABLING') {
                     icon = 'disabled icon icon-enable-false"';
-                    label = 'Disabling';
+                    label = nf._.msg('nf-controller-services.Disabling');
                 } else if (dataContext.component.state === 'ENABLED') {
                     icon = 'enabled fa fa-flash';
-                    label = 'Enabled';
+                    label = nf._.msg('nf-controller-services.Enabled');
                 } else if (dataContext.component.state === 'ENABLING') {
                     icon = 'enabled fa fa-flash';
-                    label = 'Enabling';
+                    label = nf._.msg('nf-controller-services.Enabling');
                 }
             }
 
@@ -568,28 +568,28 @@ nf.ControllerServices = (function () {
 
             if (dataContext.permissions.canRead && dataContext.permissions.canWrite) {
                 if (dataContext.component.state === 'ENABLED' || dataContext.component.state === 'ENABLING') {
-                    markup += '<div class="pointer disable-controller-service icon icon-enable-false" title="Disable" style="margin-top: 2px; margin-right: 3px;" ></div>';
+                    markup += '<div class="pointer disable-controller-service icon icon-enable-false" title="'+nf._.msg('nf-controller-services.disable')+'" style="margin-top: 2px; margin-right: 3px;" ></div>';
                 } else if (dataContext.component.state === 'DISABLED') {
-                    markup += '<div class="pointer edit-controller-service fa fa-pencil" title="Edit" style="margin-top: 2px; margin-right: 3px;" ></div>';
+                    markup += '<div class="pointer edit-controller-service fa fa-pencil" title="'+nf._.msg('nf-controller-services.edit')+'" style="margin-top: 2px; margin-right: 3px;" ></div>';
 
                     // if there are no validation errors allow enabling
                     if (nf.Common.isEmpty(dataContext.component.validationErrors)) {
-                        markup += '<div class="pointer enable-controller-service fa fa-flash" title="Enable" style="margin-top: 2px; margin-right: 3px;"></div>';
+                        markup += '<div class="pointer enable-controller-service fa fa-flash" title="'+nf._.msg('nf-controller-services.enable')+'" style="margin-top: 2px; margin-right: 3px;"></div>';
                     }
                 }
 
                 if (dataContext.component.persistsState === true) {
-                    markup += '<div title="View State" class="pointer view-state-controller-service fa fa-tasks" style="margin-top: 2px; margin-right: 3px;" ></div>';
+                    markup += '<div title="'+nf._.msg('nf-controller-services.viewstate')+'" class="pointer view-state-controller-service fa fa-tasks" style="margin-top: 2px; margin-right: 3px;" ></div>';
                 }
             }
 
             if (dataContext.permissions.canWrite) {
-                markup += '<div class="pointer delete-controller-service fa fa-trash" title="Remove" style="margin-top: 2px; margin-right: 3px;" ></div>';
+                markup += '<div class="pointer delete-controller-service fa fa-trash" title="'+nf._.msg('nf-controller-services.remove')+'" style="margin-top: 2px; margin-right: 3px;" ></div>';
             }
 
             // allow policy configuration conditionally
             if (nf.Canvas.isConfigurableAuthorizer() && nf.Common.canAccessTenants()) {
-                markup += '<div title="Access Policies" class="pointer edit-access-policies fa fa-key" style="margin-top: 2px;"></div>';
+                markup += '<div title="'+nf._.msg('nf-controller-services.acesspolicies')+'" class="pointer edit-access-policies fa fa-key" style="margin-top: 2px;"></div>';
             }
 
             return markup;
@@ -597,11 +597,11 @@ nf.ControllerServices = (function () {
 
         // define the column model for the controller services table
         var controllerServicesColumns = [
-            {id: 'moreDetails', name: '&nbsp;', resizable: false, formatter: moreControllerServiceDetails, sortable: true, width: 90, maxWidth: 90, toolTip: 'Sorts based on presence of bulletins'},
-            {id: 'name', name: 'Name', formatter: nameFormatter, sortable: true, resizable: true},
-            {id: 'type', name: 'Type', formatter: typeFormatter, sortable: true, resizable: true},
-            {id: 'state', name: 'State', formatter: controllerServiceStateFormatter, sortable: true, resizeable: true},
-            {id: 'parentGroupId', name: 'Process Group', formatter: groupIdFormatter, sortable: true, resizeable: true}
+            {id: 'moreDetails', name: '&nbsp;', resizable: false, formatter: moreControllerServiceDetails, sortable: true, width: 90, maxWidth: 90, toolTip: nf._.msg('nf-controller-services.toolTip')},
+            {id: 'name', name: nf._.msg('nf-controller-services.Name'), formatter: nameFormatter, sortable: true, resizable: true},
+            {id: 'type', name: nf._.msg('nf-controller-services.Type'), formatter: typeFormatter, sortable: true, resizable: true},
+            {id: 'state', name: nf._.msg('nf-controller-services.State'), formatter: controllerServiceStateFormatter, sortable: true, resizeable: true},
+            {id: 'parentGroupId', name: nf._.msg('nf-controller-services.ProcessGroup'), formatter: groupIdFormatter, sortable: true, resizeable: true}
         ];
 
         // action column should always be last
@@ -831,7 +831,7 @@ nf.ControllerServices = (function () {
 
             // update the button model and show the dialog
             $('#new-controller-service-dialog').modal('setButtonModel', [{
-                buttonText: 'Add',
+                buttonText: nf._.msg('nf-controller-services.Add'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -843,7 +843,7 @@ nf.ControllerServices = (function () {
                     }
                 }
             }, {
-                buttonText: 'Cancel',
+                buttonText: nf._.msg('nf-controller-service.Cancel'),
                 color: {
                     base: '#E3E8EB',
                     hover: '#C7D2D7',

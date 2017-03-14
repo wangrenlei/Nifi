@@ -151,7 +151,10 @@ nf.Cluster = (function () {
                             dataType: 'json'
                         }).done(function (response) {
                             var aboutDetails = response.about;
-                            var countersTitle = aboutDetails.title + ' Cluster';
+//                          Mr.wang edit
+//                            var countersTitle = aboutDetails.title + ' Cluster';
+                            var countersTitle = nf._.msg('nf-about')+  nf._.msg('nf-cluster.Cluster');
+                            
 
                             // set the document title and the about title
                             document.title = countersTitle;

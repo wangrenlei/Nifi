@@ -85,7 +85,7 @@ nf.ng.RemoteProcessGroupComponent = function (serviceProvider) {
 
                 nf.Dialog.showOkDialog({
                     dialogContent: content,
-                    headerText: 'Configuration Error'
+                    headerText: nf._.msg('nf-remote-process-group-component.ConfigurationError')
                 });
             } else {
                 nf.Common.handleAjaxError(xhr, status, error);
@@ -122,7 +122,7 @@ nf.ng.RemoteProcessGroupComponent = function (serviceProvider) {
                 // configure the new remote process group dialog
                 this.getElement().modal({
                     scrollableContentStyle: 'scrollable',
-                    headerText: 'Add Remote Process Group',
+                    headerText: nf._.msg('nf-remote-process-group-component.AddRemoteProcessGroup'),
                     handler: {
                         close: function () {
                             $('#new-remote-process-group-uri').val('');
@@ -237,7 +237,7 @@ nf.ng.RemoteProcessGroupComponent = function (serviceProvider) {
             };
 
             this.modal.update('setButtonModel', [{
-                buttonText: 'Add',
+                buttonText: nf._.msg('nf-remote-process-group-component.Add'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -248,7 +248,7 @@ nf.ng.RemoteProcessGroupComponent = function (serviceProvider) {
                 }
             },
                 {
-                    buttonText: 'Cancel',
+                    buttonText: nf._.msg('nf-remote-process-group-component.Cancel'),
                     color: {
                         base: '#E3E8EB',
                         hover: '#C7D2D7',

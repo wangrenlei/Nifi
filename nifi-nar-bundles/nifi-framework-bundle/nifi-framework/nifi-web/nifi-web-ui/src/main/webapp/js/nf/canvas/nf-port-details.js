@@ -24,9 +24,9 @@ nf.PortDetails = (function () {
             // configure the processor details dialog
             $('#port-details').modal({
                 scrollableContentStyle: 'scrollable',
-                headerText: 'Port Details',
+                headerText: nf._.msg('nf-port-details.PortDetails'),
                 buttons: [{
-                    buttonText: 'Ok',
+                    buttonText: nf._.msg('nf-port-details.OK'),
                     color: {
                         base: '#728E9B',
                         hover: '#004849',

@@ -257,8 +257,8 @@ nf.ng.ProcessorComponent = function (serviceProvider) {
                 init: function () {
                     // initialize the processor type table
                     var processorTypesColumns = [
-                        {id: 'type', name: 'Type', field: 'label', sortable: true, resizable: true},
-                        {id: 'tags', name: 'Tags', field: 'tags', sortable: true, resizable: true}
+                        {id: 'type', name: nf._.msg('nf-processor-component.Type'), field: 'label', sortable: true, resizable: true},
+                        {id: 'tags', name: nf._.msg('nf-processor-component.Tags'), field: 'tags', sortable: true, resizable: true}
                     ];
                     var processorTypesOptions = {
                         forceFitColumns: true,
@@ -305,7 +305,7 @@ nf.ng.ProcessorComponent = function (serviceProvider) {
                             // set the processor type description
                             if (nf.Common.isDefinedAndNotNull(processorType)) {
                                 if (nf.Common.isBlank(processorType.description)) {
-                                    $('#processor-type-description').attr('title', '').html('<span class="unset">No description specified</span>');
+                                    $('#processor-type-description').attr('title', '').html('<span class="unset">'+nf._.msg('nf-processor-component.NoDescriptionSpecified')+'</span>');
                                 } else {
                                     $('#processor-type-description').html(processorType.description).ellipsis();
                                 }
@@ -402,7 +402,7 @@ nf.ng.ProcessorComponent = function (serviceProvider) {
                 // configure the new processor dialog
                 this.getElement().modal({
                     scrollableContentStyle: 'scrollable',
-                    headerText: 'Add Processor'
+                    headerText: nf._.msg('nf-processor-component.AddProcessor')
                 });
             },
 
@@ -493,8 +493,8 @@ nf.ng.ProcessorComponent = function (serviceProvider) {
                 // ensure something was selected
                 if (name === '' || processorType === '') {
                     nf.Dialog.showOkDialog({
-                        headerText: 'Add Processor',
-                        dialogContent: 'The type of processor to create must be selected.'
+                        headerText: nf._.msg('nf-processor-component.AddProcessor'),
+                        dialogContent: nf._.msg('nf-processor-component.AddProcessorContent')
                     });
                 } else {
                     // create the new processor
@@ -523,7 +523,7 @@ nf.ng.ProcessorComponent = function (serviceProvider) {
 
             // update the button model
             this.modal.update('setButtonModel', [{
-                buttonText: 'Add',
+                buttonText: nf._.msg('nf-processor-component.Add'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -534,7 +534,7 @@ nf.ng.ProcessorComponent = function (serviceProvider) {
                 }
             },
                 {
-                    buttonText: 'Cancel',
+                    buttonText: nf._.msg('nf-processor-component.Cancel'),
                     color: {
                         base: '#E3E8EB',
                         hover: '#C7D2D7',

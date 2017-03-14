@@ -189,7 +189,7 @@ if (typeof Slick === "undefined") {
     function init() {
       $container = $(container);
       if ($container.length < 1) {
-        throw new Error("SlickGrid requires a valid container, " + container + " does not exist in the DOM.");
+        throw new Error(nf._.msg('slick.grid.Message1') + container + nf._.msg('slick.grid.Message2'));
       }
 
       // calculate these only once and share between grid instances
@@ -951,7 +951,7 @@ if (typeof Slick === "undefined") {
         }
 
         if (!stylesheet) {
-          throw new Error("Cannot find stylesheet.");
+          throw new Error(nf._.msg('slick.grid.Message3'));
         }
 
         // find and cache column CSS rules
@@ -2097,7 +2097,7 @@ if (typeof Slick === "undefined") {
 
     function addCellCssStyles(key, hash) {
       if (cellCssClasses[key]) {
-        throw "addCellCssStyles: cell CSS hash with key '" + key + "' already exists.";
+        throw nf._.msg('slick.grid.Message4') + key + nf._.msg('slick.grid.Message5');
       }
 
       cellCssClasses[key] = hash;
@@ -2384,7 +2384,7 @@ if (typeof Slick === "undefined") {
       // read column number from .l<columnNumber> CSS class
       var cls = /l\d+/.exec(cellNode.className);
       if (!cls) {
-        throw "getCellFromNode: cannot get cell - " + cellNode.className;
+        throw nf._.msg('slick.grid.Message6') + cellNode.className;
       }
       return parseInt(cls[0].substr(1, cls[0].length - 1), 10);
     }
@@ -3257,14 +3257,14 @@ if (typeof Slick === "undefined") {
 
     function getSelectedRows() {
       if (!selectionModel) {
-        throw "Selection model is not set";
+        throw nf._.msg('slick.grid.Message8');
       }
       return selectedRows;
     }
 
     function setSelectedRows(rows) {
       if (!selectionModel) {
-        throw "Selection model is not set";
+        throw nf._.msg('slick.grid.Message8');
       }
       selectionModel.setSelectedRanges(rowsToRanges(rows));
     }

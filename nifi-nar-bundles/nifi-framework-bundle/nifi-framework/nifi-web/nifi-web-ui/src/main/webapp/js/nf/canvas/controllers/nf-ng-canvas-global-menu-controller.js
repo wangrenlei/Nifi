@@ -276,7 +276,9 @@ nf.ng.Canvas.GlobalMenuCtrl = function (serviceProvider) {
                 }).done(function (response) {
                     var aboutDetails = response.about;
                     // set the document title and the about title
-                    document.title = aboutDetails.title;
+//                  Mr.wang Edit  
+//                    document.title = aboutDetails.title;
+                    document.title = nf._.msg('nf-about');
                     $('#nf-version').text(aboutDetails.version);
 
                     // store the content viewer url if available
@@ -317,12 +319,12 @@ nf.ng.Canvas.GlobalMenuCtrl = function (serviceProvider) {
 
                     this.getElement().modal({
                         scrollableContentStyle: 'scrollable',
-                        headerText: 'About Apache NiFi',
+                        headerText: nf._.msg('nf-canvas-global-menu-controller.About'),
                         handler: {
                           resize: resizeAbout
                         },
                         buttons: [{
-                            buttonText: 'Ok',
+                            buttonText: nf._.msg('nf-canvas-global-menu-controller.OK'),
                             color: {
                                 base: '#728E9B',
                                 hover: '#004849',

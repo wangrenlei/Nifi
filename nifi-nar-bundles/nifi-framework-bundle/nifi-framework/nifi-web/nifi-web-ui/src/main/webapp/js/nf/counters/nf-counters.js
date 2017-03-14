@@ -148,8 +148,10 @@ nf.Counters = (function () {
                             dataType: 'json'
                         }).done(function (response) {
                             var aboutDetails = response.about;
-                            var countersTitle = aboutDetails.title + ' Counters';
-
+//                          Mr.wang Edit
+//                            var countersTitle = aboutDetails.title + nf._.msg('nf-counters.Counters');
+                            var countersTitle = nf._.msg('nf-about')+ nf._.msg('nf-counters.Counters');
+                            
                             // set the document title and the about title
                             document.title = countersTitle;
                             $('#counters-header-text').text(countersTitle);

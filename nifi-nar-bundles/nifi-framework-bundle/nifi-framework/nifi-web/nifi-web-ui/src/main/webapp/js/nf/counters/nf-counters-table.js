@@ -138,10 +138,10 @@ nf.CountersTable = (function () {
             // filter type
             $('#counters-filter-type').combo({
                 options: [{
-                        text: 'by name',
+                        text: nf._.msg('nf-counters-table.ByName'),
                         value: 'name'
                     }, {
-                        text: 'by context',
+                        text: nf._.msg('nf-counters-table.ByContext'),
                         value: 'context'
                     }],
                 select: function (option) {
@@ -151,16 +151,16 @@ nf.CountersTable = (function () {
 
             // initialize the templates table
             var countersColumns = [
-                {id: 'context', name: 'Context', field: 'context', sortable: true, resizable: true},
-                {id: 'name', name: 'Name', field: 'name', sortable: true, resizable: true},
-                {id: 'value', name: 'Value', field: 'value', sortable: true, resizable: true, defaultSortAsc: false}
+                {id: 'context', name: nf._.msg('nf-counters-table.Context'), field: 'context', sortable: true, resizable: true},
+                {id: 'name', name: nf._.msg('nf-counters-table.Name'), field: 'name', sortable: true, resizable: true},
+                {id: 'value', name: nf._.msg('nf-counters-table.Value'), field: 'value', sortable: true, resizable: true, defaultSortAsc: false}
             ];
 
             // only allow dfm's to reset counters
             if (nf.Common.canModifyCounters()) {
                 // function for formatting the actions column
                 var actionFormatter = function (row, cell, value, columnDef, dataContext) {
-                    return '<div title="Connect" class="pointer reset-counter fa fa-undo" style="margin-top: 2px;"></div>';
+                    return '<div title="'+nf._.msg('nf-counters-table.Connect')+'" class="pointer reset-counter fa fa-undo" style="margin-top: 2px;"></div>';
                 };
 
                 // add the action column

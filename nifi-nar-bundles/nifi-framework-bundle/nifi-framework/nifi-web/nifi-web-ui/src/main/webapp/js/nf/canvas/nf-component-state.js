@@ -205,9 +205,9 @@ nf.ComponentState = (function () {
             // initialize the processor configuration dialog
             $('#component-state-dialog').modal({
                 scrollableContentStyle: 'scrollable',
-                headerText: 'Component State',
+                headerText: nf._.msg('nf-component-state.Header1'),
                 buttons: [{
-                    buttonText: 'Close',
+                    buttonText: nf._.msg('nf-component-state.Button1'),
                     color: {
                         base: '#728E9B',
                         hover: '#004849',
@@ -250,8 +250,8 @@ nf.ComponentState = (function () {
                         }).fail(nf.Common.handleAjaxError);
                     } else {
                         nf.Dialog.showOkDialog({
-                            headerText: 'Component State',
-                            dialogContent: 'This component has no state to clear.'
+                            headerText: nf._.msg('nf-component-state.Header1'),
+                            dialogContent: nf._.msg('nf-component-state.Content1')
                         });
                     }
                 }
@@ -259,8 +259,8 @@ nf.ComponentState = (function () {
 
             // initialize the queue listing table
             var componentStateColumns = [
-                {id: 'key', field: 'key', name: 'Key', sortable: true, resizable: true},
-                {id: 'value', field: 'value', name: 'Value', sortable: true, resizable: true}
+                {id: 'key', field: 'key', name: nf._.msg('nf-component-state.Key'), sortable: true, resizable: true},
+                {id: 'value', field: 'value', name: nf._.msg('nf-component-state.Value'), sortable: true, resizable: true}
             ];
 
             // conditionally show the cluster node identifier
@@ -268,7 +268,7 @@ nf.ComponentState = (function () {
                 componentStateColumns.push({
                     id: 'scope',
                     field: 'scope',
-                    name: 'Scope',
+                    name: nf._.msg('nf-component-state.Scope'),
                     sortable: true,
                     resizable: true
                 });
@@ -363,7 +363,7 @@ nf.ComponentState = (function () {
 
                 // only activate the link when appropriate
                 if (canClear === false) {
-                    $('#clear-link').addClass('disabled').attr('title', 'Component state can only be cleared when the component is not actively running');
+                    $('#clear-link').addClass('disabled').attr('title', nf._.msg('nf-component-state.Message1'));
                 }
 
                 // reset the grid size

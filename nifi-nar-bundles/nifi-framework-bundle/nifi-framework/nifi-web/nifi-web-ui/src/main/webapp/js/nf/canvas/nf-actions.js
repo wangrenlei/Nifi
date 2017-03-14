@@ -58,7 +58,7 @@ nf.Actions = (function () {
             contentType: 'application/json'
         }).fail(function (xhr, status, error) {
             nf.Dialog.showOkDialog({
-                headerText: 'Update Resource',
+                headerText: nf._.msg('nf-actions.UpdateResource'),
                 dialogContent: nf.Common.escapeHtml(xhr.responseText)
             });
         });
@@ -161,7 +161,7 @@ nf.Actions = (function () {
                     }
                 };
 
-                setLastRefreshed('Refreshing...');
+                setLastRefreshed(nf._.msg('nf-actions.Refreshing'));
                 poll(1);
             }
         },
@@ -180,8 +180,8 @@ nf.Actions = (function () {
                     window.open(encodeURI(uri));
                 } else {
                     nf.Dialog.showOkDialog({
-                        headerText: 'Remote Process Group',
-                        dialogContent: 'No target URI defined.'
+                        headerText: nf._.msg('nf-actions.RemoteGroupProcess'),
+                        dialogContent: nf._.msg('nf-actions.NoTargetURIDefined')
                     });
                 }
             }
@@ -374,8 +374,8 @@ nf.Actions = (function () {
 
             if (componentsToEnable.empty()) {
                 nf.Dialog.showOkDialog({
-                    headerText: 'Enable Components',
-                    dialogContent: 'No eligible components are selected. Please select the components to be enabled and ensure they are no longer running.'
+                    headerText: nf._.msg('nf-actions.Header1'),
+                    dialogContent: nf._.msg('nf-actions.Message1')
                 });
             } else {
                 var enableRequests = [];
@@ -417,8 +417,8 @@ nf.Actions = (function () {
 
             if (componentsToDisable.empty()) {
                 nf.Dialog.showOkDialog({
-                    headerText: 'Disable Components',
-                    dialogContent: 'No eligible components are selected. Please select the components to be disabled and ensure they are no longer running.'
+                    headerText: nf._.msg('nf-actions.Header2'),
+                    dialogContent: nf._.msg('nf-actions.Message2')
                 });
             } else {
                 var disableRequests = [];
@@ -488,8 +488,8 @@ nf.Actions = (function () {
                 // ensure there are startable components selected
                 if (componentsToStart.empty()) {
                     nf.Dialog.showOkDialog({
-                        headerText: 'Start Components',
-                        dialogContent: 'No eligible components are selected. Please select the components to be started and ensure they are no longer running.'
+                        headerText: nf._.msg('nf-actions.Header3'),
+                        dialogContent: nf._.msg('nf-actions.Message3')
                     });
                 } else {
                     var startRequests = [];
@@ -558,8 +558,8 @@ nf.Actions = (function () {
                 // ensure there are some component to stop
                 if (componentsToStop.empty()) {
                     nf.Dialog.showOkDialog({
-                        headerText: 'Stop Components',
-                        dialogContent: 'No eligible components are selected. Please select the components to be stopped.'
+                        headerText: nf._.msg('nf-actions.Header4'),
+                        dialogContent: nf._.msg('nf-actions.Message4')
                     });
                 } else {
                     var stopRequests = [];
@@ -780,8 +780,8 @@ nf.Actions = (function () {
         'delete': function (selection) {
             if (nf.Common.isUndefined(selection) || selection.empty()) {
                 nf.Dialog.showOkDialog({
-                    headerText: 'Reload',
-                    dialogContent: 'No eligible components are selected. Please select the components to be deleted.'
+                    headerText: nf._.msg('nf-actions.Header5'),
+                    dialogContent: nf._.msg('nf-actions.Message5')
                 });
             } else {
                 if (selection.size() === 1) {
@@ -885,10 +885,10 @@ nf.Actions = (function () {
 
             // prompt the user before emptying the queue
             nf.Dialog.showYesNoDialog({
-                headerText: 'Empty Queue',
-                dialogContent: 'Are you sure you want to empty this queue? All FlowFiles waiting at the time of the request will be removed.',
-                noText: 'Cancel',
-                yesText: 'Empty',
+                headerText: nf._.msg('nf-actions.EmptyQueue'),
+                dialogContent: nf._.msg('nf-actions.Message6'),
+                noText: nf._.msg('nf-actions.Cancel'),
+                yesText: nf._.msg('nf-actions.Empty'),
                 yesHandler: function () {
                     // get the connection data
                     var connection = selection.datum();
@@ -907,13 +907,13 @@ nf.Actions = (function () {
 
                         // update the progress bar
                         var label = $('<div class="progress-label"></div>').text(percentComplete + '%');
-                        (nf.ng.Bridge.injector.get('$compile')($('<md-progress-linear ng-cloak ng-value="' + percentComplete + '" class="md-hue-2" md-mode="determinate" aria-label="Drop request percent complete"></md-progress-linear>'))(nf.ng.Bridge.rootScope)).appendTo(progressBar);
+                        (nf.ng.Bridge.injector.get('$compile')($('<md-progress-linear ng-cloak ng-value="' + percentComplete + '" class="md-hue-2" md-mode="determinate" aria-label="'+nf._.msg('nf-actions.Message14')+'"></md-progress-linear>'))(nf.ng.Bridge.rootScope)).appendTo(progressBar);
                         progressBar.append(label);
                     };
 
                     // update the button model of the drop request status dialog
                     $('#drop-request-status-dialog').modal('setButtonModel', [{
-                        buttonText: 'Stop',
+                        buttonText: nf._.msg('nf-actions.Stop'),
                         color: {
                             base: '#728E9B',
                             hover: '#004849',
@@ -950,15 +950,15 @@ nf.Actions = (function () {
                                 var droppedTokens = dropRequest.dropped.split(/ \/ /);
                                 var results = $('<div></div>');
                                 $('<span class="label"></span>').text(droppedTokens[0]).appendTo(results);
-                                $('<span></span>').text(' FlowFiles (' + droppedTokens[1] + ')').appendTo(results);
+                                $('<span></span>').text(nf._.msg('nf-actions.Message15')+'"/> (' + droppedTokens[1] + ')').appendTo(results);
 
                                 // if the request did not complete, include the original
                                 if (dropRequest.percentCompleted < 100) {
                                     var originalTokens = dropRequest.original.split(/ \/ /);
-                                    $('<span class="label"></span>').text(' out of ' + originalTokens[0]).appendTo(results);
+                                    $('<span class="label"></span>').text(nf._.msg('nf-actions.Message16') + originalTokens[0]).appendTo(results) + nf._.msg('nf-actions.Message17');
                                     $('<span></span>').text(' (' + originalTokens[1] + ')').appendTo(results);
                                 }
-                                $('<span></span>').text(' were removed from the queue.').appendTo(results);
+                                $('<span></span>').text(nf._.msg('nf-actions.Message18')).appendTo(results);
 
                                 // if this request failed so the error
                                 if (nf.Common.isDefinedAndNotNull(dropRequest.failureReason)) {
@@ -967,7 +967,7 @@ nf.Actions = (function () {
 
                                 // display the results
                                 nf.Dialog.showOkDialog({
-                                    headerText: 'Empty Queue',
+                                    headerText: nf._.msg('nf-actions.EmptyQueue'),
                                     dialogContent: results
                                 });
                             }).always(function () {
@@ -976,8 +976,8 @@ nf.Actions = (function () {
                         } else {
                             // nothing was removed
                             nf.Dialog.showOkDialog({
-                                headerText: 'Empty Queue',
-                                dialogContent: 'No FlowFiles were removed.'
+                                headerText: nf._.msg('nf-actions.EmptyQueue'),
+                                dialogContent: nf._.msg('nf-actions.Message8')
                             });
 
                             // close the dialog
@@ -1197,8 +1197,8 @@ nf.Actions = (function () {
             // ensure that components have been specified
             if (selection.empty()) {
                 nf.Dialog.showOkDialog({
-                    headerText: 'Create Template',
-                    dialogContent: "The current selection is not valid to create a template."
+                    headerText: nf._.msg('nf-actions.CreateTemplate'),
+                    dialogContent: nf._.msg('nf-actions.Message9')
                 });
                 return;
             }
@@ -1209,15 +1209,15 @@ nf.Actions = (function () {
             // ensure that components specified are valid
             if (selection.empty()) {
                 nf.Dialog.showOkDialog({
-                    headerText: 'Create Template',
-                    dialogContent: "The current selection is not valid to create a template."
+                    headerText: nf._.msg('nf-actions.CreateTemplate'),
+                    dialogContent: nf._.msg('nf-actions.Message9')
                 });
                 return;
             }
 
             // prompt for the template name
             $('#new-template-dialog').modal('setButtonModel', [{
-                buttonText: 'Create',
+                buttonText: nf._.msg('nf-actions.Create'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -1231,8 +1231,8 @@ nf.Actions = (function () {
                         // ensure the template name is not blank
                         if (nf.Common.isBlank(templateName)) {
                             nf.Dialog.showOkDialog({
-                                headerText: 'Create Template',
-                                dialogContent: "The template name cannot be blank."
+                                headerText: nf._.msg('nf-actions.CreateTemplate'),
+                                dialogContent: nf._.msg('nf-actions.Message13')
                             });
                             return;
                         }
@@ -1264,8 +1264,8 @@ nf.Actions = (function () {
                             }).done(function () {
                                 // show the confirmation dialog
                                 nf.Dialog.showOkDialog({
-                                    headerText: 'Create Template',
-                                    dialogContent: "Template '" + nf.Common.escapeHtml(templateName) + "' was successfully created."
+                                    headerText: nf._.msg('nf-actions.CreateTemplate'),
+                                    dialogContent: nf._.msg('nf-actions.Template')+"'" + nf.Common.escapeHtml(templateName) + "'"+nf._.msg('nf-actions.Message11')
                                 });
                             }).always(function () {
                                 // clear the template dialog fields
@@ -1276,7 +1276,7 @@ nf.Actions = (function () {
                     }
                 }
             }, {
-                buttonText: 'Cancel',
+                buttonText: nf._.msg('nf-actions.Cancel'),
                 color: {
                     base: '#E3E8EB',
                     hover: '#C7D2D7',
@@ -1394,13 +1394,13 @@ nf.Actions = (function () {
                 // show the appropriate message is the copy fails
                 copySnippet.fail(function (responseText) {
                     // look for a message
-                    var message = 'An error occurred while attempting to copy and paste.';
+                    var message = nf._.msg('nf-actions.Message12');
                     if ($.trim(responseText) !== '') {
                         message = responseText;
                     }
 
                     nf.Dialog.showOkDialog({
-                        headerText: 'Paste Error',
+                        headerText: nf._.msg('nf-actions.Header6'),
                         dialogContent: nf.Common.escapeHtml(message)
                     });
                 });

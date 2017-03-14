@@ -182,7 +182,7 @@
                         });
                     } else {
                         // indicate when no tags are found
-                        $('<li><span class="unset">No tags specified</span></li>').appendTo(cloud);
+                        $('<li><span class="unset">' + nf._.msg('jquery-tagcloud.NoTagsSpecified') + '</span></li>').appendTo(cloud);
                     }
                 }
             });

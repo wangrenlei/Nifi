@@ -182,7 +182,7 @@ nf.ng.OutputPortComponent = function (serviceProvider) {
             };
 
             this.modal.update('setButtonModel', [{
-                buttonText: 'Add',
+                buttonText: nf._.msg('nf-output-port-component.Add'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -193,7 +193,7 @@ nf.ng.OutputPortComponent = function (serviceProvider) {
                 }
             },
                 {
-                    buttonText: 'Cancel',
+                    buttonText: nf._.msg('nf-output-port-component.Cancel'),
                     color: {
                         base: '#E3E8EB',
                         hover: '#C7D2D7',
@@ -207,7 +207,7 @@ nf.ng.OutputPortComponent = function (serviceProvider) {
                 }]);
 
             // update the port type
-            $('#new-port-type').text('Output');
+            $('#new-port-type').text(nf._.msg('nf-output-port-component.new-port-type'));
 
             // set the focus and show the dialog
             this.modal.show();

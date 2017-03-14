@@ -92,7 +92,7 @@ nf.ng.InputPortComponent = function (serviceProvider) {
                 // configure the new port dialog
                 this.getElement().modal({
                     scrollableContentStyle: 'scrollable',
-                    headerText: 'Add Port',
+                    headerText: nf._.msg('nf-input-port-component.AddPort'),
                     handler: {
                         close: function () {
                             $('#new-port-name').val('');
@@ -191,7 +191,7 @@ nf.ng.InputPortComponent = function (serviceProvider) {
             };
 
             this.modal.update('setButtonModel', [{
-                buttonText: 'Add',
+                buttonText: nf._.msg('nf-input-port-component.Add'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -202,7 +202,7 @@ nf.ng.InputPortComponent = function (serviceProvider) {
                 }
             },
                 {
-                    buttonText: 'Cancel',
+                    buttonText: nf._.msg('nf-input-port-component.Cancel'),
                     color: {
                         base: '#E3E8EB',
                         hover: '#C7D2D7',
@@ -216,7 +216,7 @@ nf.ng.InputPortComponent = function (serviceProvider) {
                 }]);
 
             // update the port type
-            $('#new-port-type').text('Input');
+            $('#new-port-type').text(nf._.msg('nf-input-port-component.new-port-type'));
 
             // show the dialog
             this.modal.show();

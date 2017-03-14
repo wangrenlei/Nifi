@@ -20,7 +20,7 @@
 nf.StatusHistory = (function () {
     var config = {
         nifiInstanceId: 'nifi-instance-id',
-        nifiInstanceLabel: 'NiFi',
+        nifiInstanceLabel: nf._.msg('nf-status-history.NiFi'),
         type: {
             processor: 'Processor',
             inputPort: 'Input Port',
@@ -146,8 +146,8 @@ nf.StatusHistory = (function () {
     var insufficientHistory = function () {
         // notify the user
         nf.Dialog.showOkDialog({
-            headerText: 'Status History',
-            dialogContent: 'Insufficient history, please try again later.'
+            headerText: nf._.msg('nf-status-history.StatusHistory'),
+            dialogContent: nf._.msg('nf-status-history.Message')
         });
     };
 
@@ -272,7 +272,7 @@ nf.StatusHistory = (function () {
             $('#status-history-details').empty();
 
             // add status history details
-            var detailsContainer = buildDetailsContainer('Status History');
+            var detailsContainer = buildDetailsContainer(nf._.msg('nf-status-history.StatusHistory'));
             d3.map(statusHistory.details).forEach(function (label, value) {
                 addDetailItem(detailsContainer, label, value);
             });
@@ -440,8 +440,8 @@ nf.StatusHistory = (function () {
                     return s.timestamp;
                 });
             });
-            addDetailItem(detailsContainer, 'Start', nf.Common.formatDateTime(minDate));
-            addDetailItem(detailsContainer, 'End', nf.Common.formatDateTime(maxDate));
+            addDetailItem(detailsContainer, nf._.msg('nf-status-history.Start'), nf.Common.formatDateTime(minDate));
+            addDetailItem(detailsContainer, nf._.msg('nf-status-history.End'), nf.Common.formatDateTime(maxDate));
 
             // determine the x axis range
             x.domain([minDate, maxDate]);
@@ -854,10 +854,10 @@ nf.StatusHistory = (function () {
             });
 
             // build the cluster container
-            var clusterDetailsContainer = buildDetailsContainer('NiFi');
+            var clusterDetailsContainer = buildDetailsContainer(nf._.msg('nf-status-history.NiFi'));
 
             // add the total cluster values
-            addDetailItem(clusterDetailsContainer, 'Min / Max / Mean', '', 'cluster-aggregate-statistics');
+            addDetailItem(clusterDetailsContainer, nf._.msg('nf-status-history.Min_Max_Mean'), '', 'cluster-aggregate-statistics');
 
             // build the cluster legend
             addLegendEntry(clusterDetailsContainer, cluster[0]);
@@ -868,7 +868,7 @@ nf.StatusHistory = (function () {
                 var nodeDetailsContainer = buildDetailsContainer('Nodes');
 
                 // add the total cluster values
-                addDetailItem(nodeDetailsContainer, 'Min / Max / Mean', '', 'node-aggregate-statistics');
+                addDetailItem(nodeDetailsContainer, nf._.msg('nf-status-history.Min_Max_Mean'), '', 'node-aggregate-statistics');
 
                 // add each legend entry
                 $.each(nodes, function (_, instance) {
@@ -1051,9 +1051,9 @@ nf.StatusHistory = (function () {
             // configure the dialog and make it draggable
             $('#status-history-dialog').modal({
                 scrollableContentStyle: 'scrollable',
-                headerText: "Status History",
+                headerText: nf._.msg('nf-status-history.StatusHistory'),
                 buttons: [{
-                    buttonText: 'Close',
+                    buttonText: nf._.msg('nf-status-history.Close'),
                     color: {
                         base: '#728E9B',
                         hover: '#004849',

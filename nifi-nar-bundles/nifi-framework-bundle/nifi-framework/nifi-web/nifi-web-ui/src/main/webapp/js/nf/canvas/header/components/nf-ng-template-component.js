@@ -81,7 +81,7 @@ nf.ng.TemplateComponent = function (serviceProvider) {
                 // configure the instantiate template dialog
                 this.getElement().modal({
                     scrollableContentStyle: 'scrollable',
-                    headerText: 'Add Template',
+                    headerText: nf._.msg('nf-template-component.AddTemplate'),
                     overlayBackgroud: false
                 });
             },
@@ -190,7 +190,7 @@ nf.ng.TemplateComponent = function (serviceProvider) {
 
                     // update the button model
                     self.modal.update('setButtonModel', [{
-                        buttonText: 'Add',
+                        buttonText: nf._.msg('nf-template-component.Add'),
                         color: {
                             base: '#728E9B',
                             hover: '#004849',
@@ -211,7 +211,7 @@ nf.ng.TemplateComponent = function (serviceProvider) {
                         }
                     },
                         {
-                            buttonText: 'Cancel',
+                            buttonText: nf._.msg('nf-template-component.Cancel'),
                             color: {
                                 base: '#E3E8EB',
                                 hover: '#C7D2D7',
@@ -228,8 +228,8 @@ nf.ng.TemplateComponent = function (serviceProvider) {
                     self.modal.show();
                 } else {
                     nf.Dialog.showOkDialog({
-                        headerText: 'Instantiate Template',
-                        dialogContent: 'No templates have been loaded into this NiFi.'
+                        headerText: nf._.msg('nf-template-component.InstantiateTemplate'),
+                        dialogContent: nf._.msg('nf-template-component.InstantiateTemplateContent')
                     });
                 }
 

@@ -64,27 +64,27 @@ nf.SummaryTable = (function () {
             selectedTabStyle: 'selected-tab',
             scrollableTabContentStyle: 'scrollable',
             tabs: [{
-                name: 'Processors',
+                name: nf._.msg('nf-summary-table.Processors'),
                 tabContentId: 'processor-summary-tab-content'
             }, {
-                name: 'Input Ports',
+                name: nf._.msg('nf-summary-table.InputPorts'),
                 tabContentId: 'input-port-summary-tab-content'
             }, {
-                name: 'Output Ports',
+                name: nf._.msg('nf-summary-table.OutputPorts'),
                 tabContentId: 'output-port-summary-tab-content'
             }, {
-                name: 'Remote Process Groups',
+                name: nf._.msg('nf-summary-table.RemoteProcessGroups'),
                 tabContentId: 'remote-process-group-summary-tab-content'
             }, {
-                name: 'Connections',
+                name: nf._.msg('nf-summary-table.Connections'),
                 tabContentId: 'connection-summary-tab-content'
             }, {
-                name: 'Process Groups',
+                name: nf._.msg('nf-summary-table.ProcessGroups'),
                 tabContentId: 'process-group-summary-tab-content'
             }],
             select: function () {
                 var tab = $(this).text();
-                if (tab === 'Processors') {
+                if (tab === nf._.msg('nf-summary-table.Processors')) {
                     // ensure the processor table is sized properly
                     var processorsGrid = $('#processor-summary-table').data('gridInstance');
                     if (nf.Common.isDefinedAndNotNull(processorsGrid)) {
@@ -98,17 +98,17 @@ nf.SummaryTable = (function () {
                     // update the combo for processors
                     $('#summary-filter-type').combo({
                         options: [{
-                            text: 'by name',
+                            text: nf._.msg('nf-summary-table.ByName'),
                             value: 'name'
                         }, {
-                            text: 'by type',
+                            text: nf._.msg('nf-summary-table.ByType'),
                             value: 'type'
                         }],
                         select: function (option) {
                             applyFilter();
                         }
                     });
-                } else if (tab === 'Connections') {
+                } else if (tab === nf._.msg('nf-summary-table.Connections')) {
                     // ensure the connection table is size properly
                     var connectionsGrid = $('#connection-summary-table').data('gridInstance');
                     if (nf.Common.isDefinedAndNotNull(connectionsGrid)) {
@@ -122,20 +122,20 @@ nf.SummaryTable = (function () {
                     // update the combo for connections
                     $('#summary-filter-type').combo({
                         options: [{
-                            text: 'by source',
+                            text: nf._.msg('nf-summary-table.BySource'),
                             value: 'sourceName'
                         }, {
-                            text: 'by name',
+                            text: nf._.msg('nf-summary-table.ByName'),
                             value: 'name'
                         }, {
-                            text: 'by destination',
+                            text: nf._.msg('nf-summary-table.ByDestination'),
                             value: 'destinationName'
                         }],
                         select: function (option) {
                             applyFilter();
                         }
                     });
-                } else if (tab === 'Input Ports') {
+                } else if (tab === nf._.msg('nf-summary-table.InputPorts')) {
                     // ensure the connection table is size properly
                     var inputPortsGrid = $('#input-port-summary-table').data('gridInstance');
                     if (nf.Common.isDefinedAndNotNull(inputPortsGrid)) {
@@ -149,14 +149,14 @@ nf.SummaryTable = (function () {
                     // update the combo for input ports
                     $('#summary-filter-type').combo({
                         options: [{
-                            text: 'by name',
+                            text: nf._.msg('nf-summary-table.ByName'),
                             value: 'name'
                         }],
                         select: function (option) {
                             applyFilter();
                         }
                     });
-                } else if (tab === 'Output Ports') {
+                } else if (tab === nf._.msg('nf-summary-table.OutputPorts')) {
                     // ensure the connection table is size properly
                     var outputPortsGrid = $('#output-port-summary-table').data('gridInstance');
                     if (nf.Common.isDefinedAndNotNull(outputPortsGrid)) {
@@ -170,14 +170,14 @@ nf.SummaryTable = (function () {
                     // update the combo for output ports
                     $('#summary-filter-type').combo({
                         options: [{
-                            text: 'by name',
+                            text: nf._.msg('nf-summary-table.ByName'),
                             value: 'name'
                         }],
                         select: function (option) {
                             applyFilter();
                         }
                     });
-                } else if (tab === 'Remote Process Groups') {
+                } else if (tab === nf._.msg('nf-summary-table.RemoteProcessGroups')) {
                     // ensure the connection table is size properly
                     var remoteProcessGroupsGrid = $('#remote-process-group-summary-table').data('gridInstance');
                     if (nf.Common.isDefinedAndNotNull(remoteProcessGroupsGrid)) {
@@ -191,10 +191,10 @@ nf.SummaryTable = (function () {
                     // update the combo for remote process groups
                     $('#summary-filter-type').combo({
                         options: [{
-                            text: 'by name',
+                            text: nf._.msg('nf-summary-table.ByName'),
                             value: 'name'
                         }, {
-                            text: 'by uri',
+                            text: nf._.msg('nf-summary-table.ByUri'),
                             value: 'targetUri'
                         }],
                         select: function (option) {
@@ -215,7 +215,7 @@ nf.SummaryTable = (function () {
                     // update the combo for process groups
                     $('#summary-filter-type').combo({
                         options: [{
-                            text: 'by name',
+                            text: nf._.msg('nf-summary-table.ByName'),
                             value: 'name'
                         }],
                         select: function (option) {
@@ -232,7 +232,7 @@ nf.SummaryTable = (function () {
 
         // define a custom formatter for showing more processor details
         var moreProcessorDetails = function (row, cell, value, columnDef, dataContext) {
-            var markup = '<div title="View Processor Details" class="pointer show-processor-details fa fa-info-circle" style="margin-right: 3px;"></div>';
+            var markup = '<div title="'+nf._.msg('nf-summary-table.ViewProcessor')+'" class="pointer show-processor-details fa fa-info-circle" style="margin-right: 3px;"></div>';
 
             // if there are bulletins, render them on the graph
             if (!nf.Common.isEmpty(dataContext.bulletins)) {
@@ -288,19 +288,19 @@ nf.SummaryTable = (function () {
         };
 
         // define the input, read, written, and output columns (reused between both tables)
-        var nameColumn = {id: 'name', field: 'name', name: 'Name', sortable: true, resizable: true};
+        var nameColumn = {id: 'name', field: 'name', name: nf._.msg('nf-summary-table.Name'), sortable: true, resizable: true};
         var runStatusColumn = {
             id: 'runStatus',
             field: 'runStatus',
-            name: 'Run Status',
+            name: nf._.msg('nf-summary-table.RunStatus'),
             formatter: runStatusFormatter,
             sortable: true
         };
         var inputColumn = {
             id: 'input',
             field: 'input',
-            name: '<span class="input-title">In</span>&nbsp;/&nbsp;<span class="input-size-title">Size</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">5 min</span>',
-            toolTip: 'Count / data size in the last 5 min',
+            name: '<span class="input-title">'+nf._.msg('nf-summary-table.In')+'</span>&nbsp;/&nbsp;<span class="input-size-title">'+nf._.msg('nf-summary-table.Size')+'</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">'+nf._.msg('nf-summary-table.5min')+'</span>',
+            toolTip:nf._.msg('nf-summary-table.Message'),
             sortable: true,
             defaultSortAsc: false,
             resizable: true
@@ -308,8 +308,8 @@ nf.SummaryTable = (function () {
         var ioColumn = {
             id: 'io',
             field: 'io',
-            name: '<span class="read-title">Read</span>&nbsp;/&nbsp;<span class="written-title">Write</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">5 min</span>',
-            toolTip: 'Data size in the last 5 min',
+            name: '<span class="read-title">'+nf._.msg('nf-summary-table.Read')+'</span>&nbsp;/&nbsp;<span class="written-title">'+nf._.msg('nf-summary-table.Write')+'</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">'+nf._.msg('nf-summary-table.5min')+'</span>',
+            toolTip: nf._.msg('nf-summary-table.Message1'),
             formatter: ioFormatter,
             sortable: true,
             defaultSortAsc: false,
@@ -318,8 +318,8 @@ nf.SummaryTable = (function () {
         var outputColumn = {
             id: 'output',
             field: 'output',
-            name: '<span class="output-title">Out</span>&nbsp;/&nbsp;<span class="output-size-title">Size</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">5 min</span>',
-            toolTip: 'Count / data size in the last 5 min',
+            name: '<span class="output-title">'+nf._.msg('nf-summary-table.Out')+'</span>&nbsp;/&nbsp;<span class="output-size-title">'+nf._.msg('nf-summary-table.Size')+'</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">'+nf._.msg('nf-summary-table.5min')+'</span>',
+            toolTip: nf._.msg('nf-summary-table.Message'),
             sortable: true,
             defaultSortAsc: false,
             resizable: true
@@ -327,8 +327,8 @@ nf.SummaryTable = (function () {
         var tasksTimeColumn = {
             id: 'tasks',
             field: 'tasks',
-            name: '<span class="tasks-title">Tasks</span>&nbsp;/&nbsp;<span class="time-title">Time</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">5 min</span>',
-            toolTip: 'Count / duration in the last 5 min',
+            name: '<span class="tasks-title">'+nf._.msg('nf-summary-table.Tasks')+'</span>&nbsp;/&nbsp;<span class="time-title">'+nf._.msg('nf-summary-table.Time')+'</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">'+nf._.msg('nf-summary-table.5min')+'</span>',
+            toolTip: nf._.msg('nf-summary-table.Message2'),
             formatter: taskTimeFormatter,
             sortable: true,
             defaultSortAsc: false,
@@ -346,10 +346,10 @@ nf.SummaryTable = (function () {
                 sortable: true,
                 width: 50,
                 maxWidth: 50,
-                toolTip: 'Sorts based on presence of bulletins'
+                toolTip: nf._.msg('nf-summary-table.Message4'),
             },
             nameColumn,
-            {id: 'type', field: 'type', name: 'Type', sortable: true, resizable: true},
+            {id: 'type', field: 'type', name: nf._.msg('nf-summary-table.Type'), sortable: true, resizable: true},
             runStatusColumn,
             inputColumn,
             ioColumn,
@@ -368,19 +368,19 @@ nf.SummaryTable = (function () {
         // add an action column if appropriate
         if (isClustered || isInShell || nf.Common.SUPPORTS_SVG) {
             // define how the column is formatted
-            var processorActionFormatter = function (row, cell, value, columnDef, dataContext) {
+        	var processorActionFormatter = function (row, cell, value, columnDef, dataContext) {
                 var markup = '';
 
                 if (isInShell) {
-                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="Go To Processor" style="margin-right: 3px;"></div>&nbsp;';
+                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="'+nf._.msg('nf-summary-table.GoToProcessor')+'" style="margin-right: 3px;"></div>&nbsp;';
                 }
 
                 if (nf.Common.SUPPORTS_SVG) {
-                    markup += '<div class="pointer show-processor-status-history fa fa-area-chart" title="View Status History" style="margin-right: 3px;"></div>&nbsp;';
+                    markup += '<div class="pointer show-processor-status-history fa fa-area-chart" title="'+nf._.msg('nf-summary-table.ViewStatus')+'" style="margin-right: 3px;"></div>&nbsp;';
                 }
 
                 if (isClustered) {
-                    markup += '<div class="pointer show-cluster-processor-summary fa fa-cubes" title="View Processor Details"></div>&nbsp;';
+                    markup += '<div class="pointer show-cluster-processor-summary fa fa-cubes" title="'+nf._.msg('nf-summary-table.ViewProcessor')+'"></div>&nbsp;';
                 }
 
                 return markup;
@@ -520,9 +520,9 @@ nf.SummaryTable = (function () {
         // initialize the cluster processor summary dialog
         $('#cluster-processor-summary-dialog').modal({
             scrollableContentStyle: 'scrollable',
-            headerText: 'Cluster Processor Summary',
+            headerText: nf._.msg('nf-summary-table.ClusterProcessorSummary'),
             buttons: [{
-                buttonText: 'Close',
+                buttonText: nf._.msg('nf-summary-table.Close'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -554,7 +554,7 @@ nf.SummaryTable = (function () {
 
         // initialize the cluster processor column model
         var clusterProcessorsColumnModel = [
-            {id: 'node', field: 'node', name: 'Node', sortable: true, resizable: true},
+            {id: 'node', field: 'node', name: nf._.msg('Node'), sortable: true, resizable: true},
             runStatusColumn,
             inputColumn,
             ioColumn,
@@ -612,14 +612,14 @@ nf.SummaryTable = (function () {
 
         // define a custom formatter for showing more processor details
         var moreConnectionDetails = function (row, cell, value, columnDef, dataContext) {
-            return '<div class="pointer show-connection-details fa fa-info-circle" title="View Connection Details" style="margin-top: 5px;"></div>';
+            return '<div class="pointer show-connection-details fa fa-info-circle" title="'+nf._.msg('nf-summary-table.ViewConnect')+'" style="margin-top: 5px;"></div>';
         };
 
         // define the input, read, written, and output columns (reused between both tables)
         var queueColumn = {
             id: 'queued',
             field: 'queued',
-            name: '<span class="queued-title">Queue</span>&nbsp;/&nbsp;<span class="queued-size-title">Size</span>',
+            name: '<span class="queued-title">'+nf._.msg('nf-summary-table.Queue')+'</span>&nbsp;/&nbsp;<span class="queued-size-title">'+nf._.msg('nf-summary-table.Size')+'</span>',
             sortable: true,
             defaultSortAsc: false,
             resize: true
@@ -636,12 +636,12 @@ nf.SummaryTable = (function () {
                 width: 50,
                 maxWidth: 50
             },
-            {id: 'sourceName', field: 'sourceName', name: 'Source Name', sortable: true, resizable: true},
-            {id: 'name', field: 'name', name: 'Name', sortable: true, resizable: true, formatter: valueFormatter},
+            {id: 'sourceName', field: 'sourceName', name: nf._.msg('nf-summary-table.SourceName'), sortable: true, resizable: true},
+            {id: 'name', field: 'name', name: nf._.msg('nf-summary-table.Name'), sortable: true, resizable: true, formatter: valueFormatter},
             {
                 id: 'destinationName',
                 field: 'destinationName',
-                name: 'Destination Name',
+                name: nf._.msg('nf-summary-table.DestinationName'),
                 sortable: true,
                 resizable: true
             },
@@ -657,15 +657,15 @@ nf.SummaryTable = (function () {
                 var markup = '';
 
                 if (isInShell) {
-                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="Go To Connection" style="margin-right: 3px;"></div>&nbsp;';
+                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="'+nf._.msg('nf-summary-table.GoToConnect')+'" style="margin-right: 3px;"></div>&nbsp;';
                 }
 
                 if (nf.Common.SUPPORTS_SVG) {
-                    markup += '<div class="pointer show-connection-status-history fa fa-area-chart" title="View Status History" style="margin-right: 3px;"></div>&nbsp;';
+                    markup += '<div class="pointer show-connection-status-history fa fa-area-chart" title="'+nf._.msg('nf-summary-table.ViewStatus')+'" style="margin-right: 3px;"></div>&nbsp;';
                 }
 
                 if (isClustered) {
-                    markup += '<div class="pointer show-cluster-connection-summary fa fa-cubes" title="View Connection Details"></div>&nbsp;';
+                    markup += '<div class="pointer show-cluster-connection-summary fa fa-cubes" title="'+nf._.msg('nf-summary-table.ViewConnect')+'"></div>&nbsp;';
                 }
 
                 return markup;
@@ -777,9 +777,9 @@ nf.SummaryTable = (function () {
         // initialize the cluster connection summary dialog
         $('#cluster-connection-summary-dialog').modal({
             scrollableContentStyle: 'scrollable',
-            headerText: 'Cluster Connection Summary',
+            headerText: nf._.msg('nf-summary-table.ClusterConnectionSummary'),
             buttons: [{
-                buttonText: 'Close',
+                buttonText: nf._.msg('nf-summary-table.ClusterConnectionSummary'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -811,7 +811,7 @@ nf.SummaryTable = (function () {
 
         // initialize the cluster processor column model
         var clusterConnectionsColumnModel = [
-            {id: 'node', field: 'node', name: 'Node', sortable: true, resizable: true},
+            {id: 'node', field: 'node', name: nf._.msg('nf-summary-table.Node'), sortable: true, resizable: true},
             inputColumn,
             queueColumn,
             outputColumn
@@ -886,13 +886,13 @@ nf.SummaryTable = (function () {
             sortable: true,
             width: 50,
             maxWidth: 50,
-            toolTip: 'Sorts based on presence of bulletins'
+            toolTip: nf._.msg('nf-summary-table.Message4')
         };
         var transferredColumn = {
             id: 'transferred',
             field: 'transferred',
-            name: '<span class="transferred-title">Transferred</span>&nbsp;/&nbsp;<span class="transferred-size-title">Size</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">5 min</span>',
-            toolTip: 'Count / data size transferred to and from connections in the last 5 min',
+            name: '<span class="transferred-title">'+nf._.msg('nf-summary-table.Transferred')+'</span>&nbsp;/&nbsp;<span class="transferred-size-title">'+nf._.msg('nf-summary-table.Size')+'</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">'+nf._.msg('nf-summary-table.5min')+'</span>',
+            toolTip: nf._.msg('nf-summary-table.Message3'),
             resizable: true,
             defaultSortAsc: false,
             sortable: true
@@ -900,8 +900,8 @@ nf.SummaryTable = (function () {
         var sentColumn = {
             id: 'sent',
             field: 'sent',
-            name: '<span class="sent-title">Sent</span>&nbsp;/&nbsp;<span class="sent-size-title">Size</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">5 min</span>',
-            toolTip: 'Count / data size in the last 5 min',
+            name: '<span class="sent-title">'+nf._.msg('nf-summary-table.Sent')+'</span>&nbsp;/&nbsp;<span class="sent-size-title">'+nf._.msg('nf-summary-table.Size')+'</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">'+nf._.msg('nf-summary-table.5min')+'</span>',
+            toolTip: nf._.msg('nf-summary-table.Message'),
             sortable: true,
             defaultSortAsc: false,
             resizable: true
@@ -909,8 +909,8 @@ nf.SummaryTable = (function () {
         var receivedColumn = {
             id: 'received',
             field: 'received',
-            name: '<span class="received-title">Received</span>&nbsp;/&nbsp;<span class="received-size-title">Size</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">5 min</span>',
-            toolTip: 'Count / data size in the last 5 min',
+            name: '<span class="received-title">'+nf._.msg('nf-summary-table.Received')+'</span>&nbsp;/&nbsp;<span class="received-size-title">'+nf._.msg('nf-summary-table.Size')+'</span>&nbsp;<span style="font-weight: normal; overflow: hidden;">'+nf._.msg('nf-summary-table.5min')+'</span>',
+            toolTip: nf._.msg('nf-summary-table.Message'),
             sortable: true,
             defaultSortAsc: false,
             resizable: true
@@ -919,7 +919,7 @@ nf.SummaryTable = (function () {
         // define the column model for the summary table
         var processGroupsColumnModel = [
             moreDetailsColumn,
-            {id: 'name', field: 'name', name: 'Name', sortable: true, resizable: true, formatter: valueFormatter},
+            {id: 'name', field: 'name', name: nf._.msg('nf-summary-table.Name'), sortable: true, resizable: true, formatter: valueFormatter},
             transferredColumn,
             inputColumn,
             ioColumn,
@@ -935,15 +935,15 @@ nf.SummaryTable = (function () {
                 var markup = '';
 
                 if (isInShell && dataContext.groupId !== null) {
-                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="Go To Process Group" style="margin-right: 3px;"></div>&nbsp;';
+                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="'+nf._.msg('nf-summary-table.GoToProcessor')+'" style="margin-right: 3px;"></div>&nbsp;';
                 }
 
                 if (nf.Common.SUPPORTS_SVG) {
-                    markup += '<div class="pointer show-process-group-status-history fa fa-area-chart" title="View Status History" style="margin-right: 3px;"></div>&nbsp;';
+                    markup += '<div class="pointer show-process-group-status-history fa fa-area-chart" title="'+nf._.msg('nf-summary-table.ViewStatus')+'" style="margin-right: 3px;"></div>&nbsp;';
                 }
 
                 if (isClustered) {
-                    markup += '<div class="pointer show-cluster-process-group-summary fa fa-cubes" title="View Process Group Details"></div>&nbsp;';
+                    markup += '<div class="pointer show-cluster-process-group-summary fa fa-cubes" title="'+nf._.msg('nf-summary-table.ViewProcessorGroup')+'"></div>&nbsp;';
                 }
 
                 return markup;
@@ -1082,9 +1082,9 @@ nf.SummaryTable = (function () {
         // initialize the cluster process group summary dialog
         $('#cluster-process-group-summary-dialog').modal({
             scrollableContentStyle: 'scrollable',
-            headerText: 'Cluster Process Group Summary',
+            headerText: nf._.msg('nf-summary-table.ClusterProcessGroupSummary'),
             buttons: [{
-                buttonText: 'Close',
+                buttonText: nf._.msg('nf-summary-table.Close'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -1188,11 +1188,11 @@ nf.SummaryTable = (function () {
                 var markup = '';
 
                 if (isInShell) {
-                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="Go To Input Port" style="margin-right: 3px;"></div>&nbsp;';
+                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="'+nf._.msg('nf-summary-table.GoToInputPort')+'" style="margin-right: 3px;"></div>&nbsp;';
                 }
 
                 if (isClustered) {
-                    markup += '<div class="pointer show-cluster-input-port-summary fa fa-cubes" title="View Input Port Details"></div>&nbsp;';
+                    markup += '<div class="pointer show-cluster-input-port-summary fa fa-cubes" title="'+nf._.msg('nf-summary-table.ViewInputPort')+'"></div>&nbsp;';
                 }
 
                 return markup;
@@ -1326,9 +1326,9 @@ nf.SummaryTable = (function () {
         // initialize the cluster input port summary dialog
         $('#cluster-input-port-summary-dialog').modal({
             scrollableContentStyle: 'scrollable',
-            headerText: 'Cluster Input Port Summary',
+            headerText: nf._.msg('nf-summary-table.ClusterInputPortSummary'),
             buttons: [{
-                buttonText: 'Close',
+                buttonText: nf._.msg('nf-summary-table.Close'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -1360,7 +1360,7 @@ nf.SummaryTable = (function () {
 
         // initialize the cluster input port column model
         var clusterInputPortsColumnModel = [
-            {id: 'node', field: 'node', name: 'Node', sortable: true, resizable: true},
+            {id: 'node', field: 'node', name: nf._.msg('nf-summary-table.Node'), sortable: true, resizable: true},
             runStatusColumn,
             outputColumn
         ];
@@ -1428,11 +1428,11 @@ nf.SummaryTable = (function () {
                 var markup = '';
 
                 if (isInShell) {
-                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="Go To Output Port" style="margin-right: 3px;"></div>&nbsp;';
+                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="'+nf._.msg('nf-summary-table.GoToOutputPort')+'" style="margin-right: 3px;"></div>&nbsp;';
                 }
 
                 if (isClustered) {
-                    markup += '<div class="pointer show-cluster-output-port-summary fa fa-cubes" title="View Output Port Details"></div>&nbsp;';
+                    markup += '<div class="pointer show-cluster-output-port-summary fa fa-cubes" title="'+nf._.msg('nf-summary-table.ViewOutputPort')+'"></div>&nbsp;';
                 }
 
                 return markup;
@@ -1566,9 +1566,9 @@ nf.SummaryTable = (function () {
         // initialize the cluster output port summary dialog
         $('#cluster-output-port-summary-dialog').modal({
             scrollableContentStyle: 'scrollable',
-            headerText: 'Cluster Output Port Summary',
+            headerText: nf._.msg('nf-summary-table.ClusterOutPutPortSummary'),
             buttons: [{
-                buttonText: 'Close',
+                buttonText: nf._.msg('nf-summary-table.Close'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -1600,7 +1600,7 @@ nf.SummaryTable = (function () {
 
         // initialize the cluster output port column model
         var clusterOutputPortsColumnModel = [
-            {id: 'node', field: 'node', name: 'Node', sortable: true, resizable: true},
+            {id: 'node', field: 'node', name: nf._.msg('nf-summary-table.Node'), sortable: true, resizable: true},
             runStatusColumn,
             inputColumn
         ];
@@ -1679,7 +1679,7 @@ nf.SummaryTable = (function () {
         var transmissionStatusColumn = {
             id: 'transmissionStatus',
             field: 'transmissionStatus',
-            name: 'Transmitting',
+            name: nf._.msg('nf-summary-table.Transmitting'),
             formatter: transmissionStatusFormatter,
             sortable: true,
             resizable: true
@@ -1687,7 +1687,7 @@ nf.SummaryTable = (function () {
         var targetUriColumn = {
             id: 'targetUri',
             field: 'targetUri',
-            name: 'Target URI',
+            name: nf._.msg('nf-summary-table.Target URI'),
             sortable: true,
             resizable: true
         };
@@ -1703,7 +1703,7 @@ nf.SummaryTable = (function () {
                 sortable: true,
                 width: 50,
                 maxWidth: 50,
-                toolTip: 'Sorts based on presence of bulletins'
+                toolTip: nf._.msg('nf-summary-table.Message4')
             },
             nameColumn,
             targetUriColumn,
@@ -1719,15 +1719,15 @@ nf.SummaryTable = (function () {
                 var markup = '';
 
                 if (isInShell) {
-                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="Go To Process Group" style="margin-right: 3px;"></div>&nbsp;';
+                    markup += '<div class="pointer go-to fa fa-long-arrow-right" title="'+nf._.msg('nf-summary-table.GoToProcessorGroup')+'" style="margin-right: 3px;"></div>&nbsp;';
                 }
 
                 if (nf.Common.SUPPORTS_SVG) {
-                    markup += '<div class="pointer show-remote-process-group-status-history fa fa-area-chart" title="View Status History" style="margin-right: 3px;"></div>&nbsp;';
+                    markup += '<div class="pointer show-remote-process-group-status-history fa fa-area-chart" title="'+nf._.msg('nf-summary-table.ViewStatus')+'" style="margin-right: 3px;"></div>&nbsp;';
                 }
 
                 if (isClustered) {
-                    markup += '<div class="pointer show-cluster-remote-process-group-summary fa fa-cubes" title="View Remote Process Group Details"></div>&nbsp;';
+                    markup += '<div class="pointer show-cluster-remote-process-group-summary fa fa-cubes" title="'+nf._.msg('nf-summary-table.ViewRemoteProcessorGroup')+'"></div>&nbsp;';
                 }
 
                 return markup;
@@ -1863,9 +1863,9 @@ nf.SummaryTable = (function () {
         // initialize the cluster remote process group summary dialog
         $('#cluster-remote-process-group-summary-dialog').modal({
             scrollableContentStyle: 'scrollable',
-            headerText: 'Cluster Remote Process Group Summary',
+            headerText: nf._.msg('nf-summary-table.ClusterRemoteProcessGroupSummary'),
             buttons: [{
-                buttonText: 'Close',
+                buttonText: nf._.msg('nf-summary-table.Close'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -1897,7 +1897,7 @@ nf.SummaryTable = (function () {
 
         // initialize the cluster remote process group column model
         var clusterRemoteProcessGroupsColumnModel = [
-            {id: 'node', field: 'node', name: 'Node', sortable: true, resizable: true},
+            {id: 'node', field: 'node', name: nf._.msg('nf-summary-table.Node'), sortable: true, resizable: true},
             targetUriColumn,
             transmissionStatusColumn,
             sentColumn,
@@ -1968,10 +1968,10 @@ nf.SummaryTable = (function () {
             selectedTabStyle: 'selected-tab',
             scrollableTabContentStyle: 'scrollable',
             tabs: [{
-                name: 'JVM',
+                name: nf._.msg('nf-summary-table.JVM'),
                 tabContentId: 'jvm-tab-content'
             }, {
-                name: 'System',
+                name: nf._.msg('nf-summary-table.System'),
                 tabContentId: 'system-tab-content'
             }]
         });
@@ -1979,9 +1979,9 @@ nf.SummaryTable = (function () {
         // initialize the system diagnostics dialog
         $('#system-diagnostics-dialog').modal({
             scrollableContentStyle: 'scrollable',
-            headerText: 'System Diagnostics',
+            headerText: nf._.msg('nf-summary-table.SystemDiagnostics'),
             buttons: [{
-                buttonText: 'Close',
+                buttonText: nf._.msg('nf-summary-table.Close'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -2255,7 +2255,7 @@ nf.SummaryTable = (function () {
         var nameTr = $('<tr></tr>').appendTo(container);
         $('<td class="setting-name"></td>').append(garbageCollection.name + ':').appendTo(nameTr);
         var valTr = $('<tr></tr>').appendTo(container);
-        $('<td></td>').append($('<b></b>').text(garbageCollection.collectionCount + ' times (' + garbageCollection.collectionTime + ')')).appendTo(valTr);
+        $('<td></td>').append($('<b></b>').text(garbageCollection.collectionCount + nf._.msg('nf-summary-table.times') + '(' + garbageCollection.collectionTime + ')')).appendTo(valTr);
         $('<tr></tr>').text(' ').appendTo(container);
     };
 
@@ -2273,11 +2273,11 @@ nf.SummaryTable = (function () {
         var storage = $('<div class="storage-identifier setting-name"></div>');
         storage.text('Usage:');
         if (nf.Common.isDefinedAndNotNull(storageUsage.identifier)) {
-            storage.text('Usage for ' + storageUsage.identifier + ':');
+            storage.text(nf._.msg('nf-summary-table.UsageFor') + storageUsage.identifier + ':');
         }
         storage.appendTo(storageUsageContainer);
 
-        (nf.ng.Bridge.injector.get('$compile')($('<md-progress-linear class="md-hue-2" md-mode="determinate" value="' + (used/total)*100 + '" aria-label="FlowFile Repository Storage Usage"></md-progress-linear>'))(nf.ng.Bridge.rootScope)).appendTo(storageUsageContainer);
+        (nf.ng.Bridge.injector.get('$compile')($('<md-progress-linear class="md-hue-2" md-mode="determinate" value="' + (used/total)*100 + '" aria-label="'+nf._.msg('nf-summary-table.aria1')+'"></md-progress-linear>'))(nf.ng.Bridge.rootScope)).appendTo(storageUsageContainer);
 
         var usageDetails = $('<div class="storage-usage-details"></div>').text(' (' + storageUsage.usedSpace + ' of ' + storageUsage.totalSpace + ')').prepend($('<b></b>').text(Math.round((used/total)*100) + '%'));
         $('<div class="storage-usage-header"></div>').append(usageDetails).append('<div class="clear"></div>').appendTo(storageUsageContainer);

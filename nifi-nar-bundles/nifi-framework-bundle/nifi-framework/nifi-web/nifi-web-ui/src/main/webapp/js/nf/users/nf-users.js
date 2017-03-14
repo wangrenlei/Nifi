@@ -138,8 +138,8 @@ nf.Users = (function () {
                             dataType: 'json'
                         }).done(function (response) {
                             var aboutDetails = response.about;
-                            var countersTitle = aboutDetails.title + ' Users';
-
+//                            var countersTitle = aboutDetails.title + ' Users';
+                            var countersTitle = nf._.msg('nf-about')+ nf._.msg('nf-users.Users');
                             // set the document title and the about title
                             document.title = countersTitle;
                             $('#users-header-text').text(countersTitle);

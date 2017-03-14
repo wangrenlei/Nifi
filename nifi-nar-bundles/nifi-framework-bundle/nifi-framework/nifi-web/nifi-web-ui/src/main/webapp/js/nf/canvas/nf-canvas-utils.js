@@ -192,8 +192,8 @@ nf.CanvasUtils = (function () {
                             deferred.resolve();
                         }).fail(function () {
                             nf.Dialog.showOkDialog({
-                                headerText: 'Process Group',
-                                dialogContent: 'Unable to load the group for the specified component.'
+                                headerText: nf._.msg('nf-canvas-utils.Header1'),
+                                dialogContent: nf._.msg('nf-canvas-utils.Message1')
                             });
                             deferred.reject();
                         });
@@ -210,8 +210,8 @@ nf.CanvasUtils = (function () {
                         nf.Actions.show(component);
                     } else {
                         nf.Dialog.showOkDialog({
-                            headerText: 'Process Group',
-                            dialogContent: 'Unable to find the specified component.'
+                            headerText: nf._.msg('nf-canvas-utils.Header1'),
+                            dialogContent: nf._.msg('nf-canvas-utils.Message2')
                         });
                     }
                 });
@@ -1319,8 +1319,8 @@ nf.CanvasUtils = (function () {
                 }
             }).fail(function () {
                 nf.Dialog.showOkDialog({
-                    headerText: 'Process Group',
-                    dialogContent: 'Unable to enter the selected group.'
+                    headerText: nf._.msg('nf-canvas-utils.Header1'),
+                    dialogContent: nf._.msg('nf-canvas-utils.Message3')
                 });
             });
         },
@@ -1359,8 +1359,8 @@ nf.CanvasUtils = (function () {
             // if the group id is null, we're already in the top most group
             if (groupId === null) {
                 nf.Dialog.showOkDialog({
-                    headerText: 'Process Group',
-                    dialogContent: 'Components are already in the topmost group.'
+                    headerText: nf._.msg('nf-canvas-utils.Header1'),
+                    dialogContent: nf._.msg('nf-canvas-utils.Message7')
                 });
             } else {
                 moveComponents(components, groupId);

@@ -82,8 +82,8 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
             }
         }).fail(function () {
             nf.Dialog.showOkDialog({
-                headerText: 'Provenance',
-                dialogContent: 'Unable to generate access token for downloading content.'
+                headerText: nf._.msg('nf-provenance-table.Provenance'),
+                dialogContent: nf._.msg('nf-provenance-table.Message8')
             });
         });
     };
@@ -120,8 +120,8 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
                     deferred.resolve(uiExtensionToken, downloadToken);
                 }).fail(function () {
                     nf.Dialog.showOkDialog({
-                        headerText: 'Provenance',
-                        dialogContent: 'Unable to generate access token for viewing content.'
+                        headerText: nf._.msg('nf-provenance-table.Provenance'),
+                        dialogContent: nf._.msg('nf-provenance-table.Message7')
                     });
                     deferred.reject();
                 });
@@ -186,22 +186,22 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
             selectedTabStyle: 'selected-tab',
             scrollableTabContentStyle: 'scrollable',
             tabs: [{
-                name: 'Details',
+                name: nf._.msg('nf-provenance-table.Details'),
                 tabContentId: 'event-details-tab-content'
             }, {
-                name: 'Attributes',
+                name: nf._.msg('nf-provenance-table.Attributes'),
                 tabContentId: 'attributes-tab-content'
             }, {
-                name: 'Content',
+                name: nf._.msg('nf-provenance-table.Content'),
                 tabContentId: 'content-tab-content'
             }]
         });
 
         $('#event-details-dialog').modal({
             scrollableContentStyle: 'scrollable',
-            headerText: 'Provenance Event',
+            headerText: nf._.msg('nf-provenance-table.ProvenanceEvent'),
             buttons: [{
-                buttonText: 'Ok',
+                buttonText: nf._.msg('nf-provenance-table.Ok'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -282,8 +282,8 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
                 contentType: 'application/json'
             }).done(function (response) {
                 nf.Dialog.showOkDialog({
-                    headerText: 'Provenance',
-                    dialogContent: 'Successfully submitted replay request.'
+                    headerText: nf._.msg('nf-provenance-table.Provenance'),
+                    dialogContent: nf._.msg('nf-provenance-table.Message1')
                 });
             }).fail(nf.Common.handleAjaxError);
 
@@ -364,9 +364,9 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
         // configure the search dialog
         $('#provenance-search-dialog').modal({
             scrollableContentStyle: 'scrollable',
-            headerText: 'Search Events',
+            headerText: nf._.msg('nf-provenance-table.Message2'),
             buttons: [{
-                buttonText: 'Search',
+                buttonText: nf._.msg('nf-provenance-table.Search'),
                 color: {
                     base: '#728E9B',
                     hover: '#004849',
@@ -428,7 +428,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
                 }
             },
                 {
-                    buttonText: 'Cancel',
+                    buttonText: nf._.msg('nf-provenance-table.Cancel'),
                     color: {
                         base: '#E3E8EB',
                         hover: '#C7D2D7',
@@ -463,7 +463,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
         // initialize the dialog
         $('#provenance-query-dialog').modal({
             scrollableContentStyle: 'scrollable',
-            headerText: 'Searching provenance events...'
+            headerText: nf._.msg('nf-provenance-table.Message10')
         });
     };
 
@@ -521,20 +521,20 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
 
         // filter options
         var filterOptions = [{
-            text: 'by component name',
+            text: nf._.msg('nf-provenance-table.ByComponentName'),
             value: 'componentName'
         }, {
-            text: 'by component type',
+            text: nf._.msg('nf-provenance-table.ByComponentType'),
             value: 'componentType'
         }, {
-            text: 'by type',
+            text: nf._.msg('nf-provenance-table.ByType'),
             value: 'eventType'
         }];
 
         // if clustered, allowing filtering by node id
         if (isClustered) {
             filterOptions.push({
-                text: 'by node',
+                text: nf._.msg('nf-provenance-table.ByNode'),
                 value: 'clusterNodeAddress'
             });
         }
@@ -567,7 +567,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
             // if we are clustered reset the selected option
             if (isClustered) {
                 $('#provenance-search-location').combo('setSelectedOption', {
-                    text: 'cluster'
+                    text: nf._.msg('nf-provenance-table.Cluster')
                 });
             }
 
@@ -593,7 +593,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
 
         // define a custom formatter for the more details column
         var moreDetailsFormatter = function (row, cell, value, columnDef, dataContext) {
-            return '<div title="View Details" class="pointer show-event-details fa fa-info-circle"></div>';
+            return '<div title="'+nf._.msg('nf-provenance-table.ViewDetail')+'" class="pointer show-event-details fa fa-info-circle"></div>';
         };
 
         // define how general values are formatted
@@ -610,12 +610,12 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
 
             // conditionally include the cluster node id
             if (nf.Common.SUPPORTS_SVG) {
-                markup += '<div title="Show Lineage" class="pointer show-lineage icon icon-lineage" style="margin-right: 3px;"></div>';
+                markup += '<div title="'+nf._.msg('nf-provenance-table.ShowLineage')+'" class="pointer show-lineage icon icon-lineage" style="margin-right: 3px;"></div>';
             }
 
             // conditionally support going to the component
             if (isInShell && nf.Common.isDefinedAndNotNull(dataContext.groupId)) {
-                markup += '&nbsp;<div class="pointer go-to fa fa-long-arrow-right" title="Go To"></div>';
+                markup += '&nbsp;<div class="pointer go-to fa fa-long-arrow-right" title="'+nf._.msg('nf-provenance-table.GoTo')+'"></div>';
             }
 
             return markup;
@@ -634,31 +634,31 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
             },
             {
                 id: 'eventTime',
-                name: 'Date/Time',
+                name: nf._.msg('nf-provenance-table.DateTime'),
                 field: 'eventTime',
                 sortable: true,
                 defaultSortAsc: false,
                 resizable: true
             },
-            {id: 'eventType', name: 'Type', field: 'eventType', sortable: true, resizable: true},
-            {id: 'flowFileUuid', name: 'FlowFile Uuid', field: 'flowFileUuid', sortable: true, resizable: true},
-            {id: 'fileSize', name: 'Size', field: 'fileSize', sortable: true, defaultSortAsc: false, resizable: true},
+            {id: 'eventType', name: nf._.msg('nf-provenance-table.Type'), field: 'eventType', sortable: true, resizable: true},
+            {id: 'flowFileUuid', name: nf._.msg('nf-provenance-table.FlowFileUuid'), field: 'flowFileUuid', sortable: true, resizable: true},
+            {id: 'fileSize', name: nf._.msg('nf-provenance-table.Size'), field: 'fileSize', sortable: true, defaultSortAsc: false, resizable: true},
             {
                 id: 'componentName',
-                name: 'Component Name',
+                name: nf._.msg('nf-provenance-table.ComponentName'),
                 field: 'componentName',
                 sortable: true,
                 resizable: true,
                 formatter: valueFormatter
             },
-            {id: 'componentType', name: 'Component Type', field: 'componentType', sortable: true, resizable: true}
+            {id: 'componentType', name: nf._.msg('nf-provenance-table.ComponentType'), field: 'componentType', sortable: true, resizable: true}
         ];
 
         // conditionally show the cluster node identifier
         if (isClustered) {
             provenanceColumns.push({
                 id: 'clusterNodeAddress',
-                name: 'Node',
+                name: nf._.msg('nf-provenance-table.Node'),
                 field: 'clusterNodeAddress',
                 sortable: true,
                 resizable: true
@@ -955,20 +955,20 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
 
             // update the filter message based on the request
             if (isBlankQuery(provenanceRequest)) {
-                var message = 'Showing the most recent ';
+                var message = nf._.msg('nf-provenance-table.Message');
                 if (provenanceResults.totalCount >= config.maxResults) {
-                    message += (nf.Common.formatInteger(config.maxResults) + ' of ' + provenanceResults.total + ' events, please refine the search.');
+                    message += (nf.Common.formatInteger(config.maxResults) + nf._.msg('nf-provenance-table.Of') + provenanceResults.total + nf._.msg('nf-provenance-table.Message4'));
                 } else {
-                    message += ('events.');
+                    message += (nf._.msg('nf-provenance-table.Events'));
                 }
                 $('#provenance-query-message').text(message);
                 $('#clear-provenance-search').hide();
             } else {
-                var message = 'Showing ';
+                var message = nf._.msg('nf-provenance-table.Showing');
                 if (provenanceResults.totalCount >= config.maxResults) {
-                    message += (nf.Common.formatInteger(config.maxResults) + ' of ' + provenanceResults.total + ' events that match the specified query, please refine the search.');
+                    message += (nf.Common.formatInteger(config.maxResults) + nf._.msg('nf-provenance-table.Of') + provenanceResults.total + nf._.msg('nf-provenance-table.Message5'));
                 } else {
-                    message += ('the events that match the specified query.');
+                    message += (nf._.msg('nf-provenance-table.Message6'));
                 }
                 $('#provenance-query-message').text(message);
                 $('#clear-provenance-search').show();
@@ -1067,7 +1067,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
 
             // update the progress bar
             var label = $('<div class="progress-label"></div>').text(value + '%');
-            (nf.ng.Bridge.injector.get('$compile')($('<md-progress-linear ng-cloak ng-value="' + value + '" class="md-hue-2" md-mode="determinate" aria-label="Progress"></md-progress-linear>'))(nf.ng.Bridge.rootScope)).appendTo(progressBar);
+            (nf.ng.Bridge.injector.get('$compile')($('<md-progress-linear ng-cloak ng-value="' + value + '" class="md-hue-2" md-mode="determinate" aria-label="'+nf._.msg('nf-provenance-table.Process')+'"></md-progress-linear>'))(nf.ng.Bridge.rootScope)).appendTo(progressBar);
             progressBar.append(label);
         },
 
@@ -1097,7 +1097,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
 
             // show the 'searching...' dialog
             $('#provenance-query-dialog').modal('setButtonModel', [{
-                buttonText: 'Cancel',
+                buttonText: nf._.msg('nf-provenance-table.Cancel'),
                 color: {
                     base: '#E3E8EB',
                     hover: '#C7D2D7',
@@ -1176,7 +1176,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
                     if (!nf.Common.isEmpty(provenance.results.errors)) {
                         var errors = provenance.results.errors;
                         nf.Dialog.showOkDialog({
-                            headerText: 'Provenance',
+                            headerText: nf._.msg('nf-provenance-table.Provenance'),
                             dialogContent: nf.Common.formatUnorderedList(errors),
                         });
                     }
@@ -1230,7 +1230,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
 
             // over the default tooltip with the actual byte count
             var fileSize = $('#provenance-event-file-size').html(nf.Common.formatValue(event.fileSize)).ellipsis();
-            fileSize.attr('title', nf.Common.formatInteger(event.fileSizeBytes) + ' bytes');
+            fileSize.attr('title', nf.Common.formatInteger(event.fileSizeBytes) + nf._.msg('nf-provenance-table.Bytes'));
 
             // sets an duration
             var setDuration = function (field, value) {
@@ -1241,7 +1241,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
                         field.text(nf.Common.formatDuration(value));
                     }
                 } else {
-                    field.html('<span class="unset">No value set</span>');
+                    field.html('<span class="unset">'+nf._.msg('nf-provenance-table.NoValueSet')+'</span>');
                 }
             };
 
@@ -1299,7 +1299,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
             // handle parent flowfiles
             if (nf.Common.isEmpty(event.parentUuids)) {
                 $('#parent-flowfile-count').text(0);
-                parentUuids.append('<span class="unset">No parents</span>');
+                parentUuids.append('<span class="unset">'+nf._.msg('nf-provenance-table.NoParent')+'</span>');
             } else {
                 $('#parent-flowfile-count').text(event.parentUuids.length);
                 $.each(event.parentUuids, function (_, uuid) {
@@ -1310,7 +1310,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
             // handle child flowfiles
             if (nf.Common.isEmpty(event.childUuids)) {
                 $('#child-flowfile-count').text(0);
-                childUuids.append('<span class="unset">No children</span>');
+                childUuids.append('<span class="unset">'+nf._.msg('nf-provenance-table.NoChildren')+'</span>');
             } else {
                 $('#child-flowfile-count').text(event.childUuids.length);
                 $.each(event.childUuids, function (_, uuid) {
@@ -1354,12 +1354,12 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
                 if (nf.Common.isDefinedAndNotNull(value)) {
                     element.removeClass('unset').text(value);
                 } else {
-                    element.addClass('unset').text('No value previously set');
+                    element.addClass('unset').text(nf._.msg('nf-provenance-table.Message9'));
                 }
             };
 
             // content
-            $('#input-content-header').text('Input Claim');
+            $('#input-content-header').text(nf._.msg('nf-provenance-table.InputClaim'));
             formatContentValue($('#input-content-container'), event.inputContentClaimContainer);
             formatContentValue($('#input-content-section'), event.inputContentClaimSection);
             formatContentValue($('#input-content-identifier'), event.inputContentClaimIdentifier);
@@ -1371,7 +1371,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
             formatContentValue(inputContentSize, event.inputContentClaimFileSize);
             if (nf.Common.isDefinedAndNotNull(event.inputContentClaimFileSize)) {
                 // over the default tooltip with the actual byte count
-                inputContentSize.attr('title', nf.Common.formatInteger(event.inputContentClaimFileSizeBytes) + ' bytes');
+                inputContentSize.attr('title', nf.Common.formatInteger(event.inputContentClaimFileSizeBytes) + nf._.msg('nf-provenance-table.Bytes'));
             }
 
             formatContentValue($('#output-content-container'), event.outputContentClaimContainer);
@@ -1385,7 +1385,7 @@ nf.ng.ProvenanceTable = function (provenanceLineageCtrl) {
             formatContentValue(outputContentSize, event.outputContentClaimFileSize);
             if (nf.Common.isDefinedAndNotNull(event.outputContentClaimFileSize)) {
                 // over the default tooltip with the actual byte count
-                outputContentSize.attr('title', nf.Common.formatInteger(event.outputContentClaimFileSizeBytes) + ' bytes');
+                outputContentSize.attr('title', nf.Common.formatInteger(event.outputContentClaimFileSizeBytes) + nf._.msg('nf-provenance-table.Bytes'));
             }
 
             if (event.inputContentAvailable === true) {
