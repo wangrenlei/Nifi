@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config charset="UTF-8">
+    <function name="fetchseedtotal">
+        <empty>
+            <var-def name="curUrl">
+                <case>
+                    <if condition='${type.toString().trim().equals("title")}'>
+                        <template><![CDATA[http://news.baidu.com/ns?from=news&cl=2&bt=${_bt}&et=${_et}&q1=${keyword}&q3=&q4=&s=1&mt=0&lm=&s=2&begin_date=${starttime}&end_date=${endtime}&tn=newstitledy&ct1=0&ct=0&rn=100&q6=]]></template>
+                    </if>
+                    <else>
+                        <template><![CDATA[http://news.baidu.com/ns?from=news&cl=2&bt=${_bt}&et=${_et}&q1=${keyword}&q3=&q4=&s=1&mt=0&lm=&s=2&begin_date=${starttime}&end_date=${endtime}&tn=newsdy&ct1=0&ct=0&rn=100&q6=]]></template>
+                    </else>
+                </case><!--<template><![CDATA[http://news.baidu.com/ns?ct=0&rn=100&ie=utf-8&bs=${keyword}&rsv_bp=1&sr=0&cl=2&f=8&prevct=no&tn=news&word=${keyword}]]></template>-->
+            </var-def>
+            <var-def name="content">
+                <html-to-xml>
+                    <http url="${curUrl}" charset="utf-8"/>
+                </html-to-xml>
+            </var-def>
+            <var-def name="pageNum">
+                <!--<xpath expression="//div[@id='container']//p[@id='page']//a[last()-1]/span[@class='pc']/text()">
+                        <var name="content"/>
+                </xpath>-->
+                <xpath expression="//div[@id='wrapper']/p[@id='page']/a[last()-1]/span[@class='pc']/text()">
+                    <var name="content"/>
+                </xpath>
+            </var-def>
+            <case>
+                <if	condition="${pageNum.toString().trim().length() > 0}">
+                </if>
+                <else>
+                    <var-def name="pageNum">1</var-def>
+                </else>
+            </case>
+            <var-def name="mention">
+                <!--<xpath expression="//p[@id='page']//span[@class='nums']/text()">
+                        <var name="content"/>
+                </xpath>-->
+                <xpath expression="//div[@id='header_top_bar']/span[@class='nums']/text()">
+                    <var name="content"/>
+                </xpath>
+            </var-def>
+            <script><![CDATA[
+				String temp = mention.toString().trim();
+				i = temp.indexOf("约");
+				j = temp.indexOf("篇");
+				if(i >0 && i < j ){
+					_mention = temp.substring(i+1,j);
+					_mention = _mention.toString().replaceAll(",","");
+					SetContextVar("mention",_mention.toString().trim());
+				}else{
+					m = temp.indexOf("新闻");
+					n = temp.indexOf("篇");
+					if(m >0 && m < n ){
+						_mention = temp.substring(m+2,n);
+						_mention = _mention.toString().replaceAll(",","");
+						SetContextVar("mention",_mention.toString().trim());
+					}
+				}
+				]]>
+            </script>
+            <case>
+                <if	condition="${mention.toString().trim().length() > 0}">
+                </if>
+                <else>
+                    <var-def name="mention">0</var-def>
+                </else>
+            </case>
+        </empty>
+        <return>
+            <template><![CDATA[{"maxpage":${pageNum},"mention":${mention}}]]></template>
+        </return>
+    </function>
+    <var-def name="_return">
+        <call name="fetchseedtotal">
+            <call-param name="keyword">
+                <template>${_keyword}</template>
+            </call-param>
+            <call-param name="starttime">
+                <template>${_startTime}</template>
+            </call-param>
+            <call-param name="endtime">
+                <template>${_endTime}</template>
+            </call-param>
+            <call-param name="_bt">
+                <template>${_bt}</template>
+            </call-param>
+            <call-param name="_et">
+                <template>${_et}</template>
+            </call-param>
+            <call-param name="type">
+                <template>${_type}</template>
+            </call-param>
+        </call>
+    </var-def>
+</config>
