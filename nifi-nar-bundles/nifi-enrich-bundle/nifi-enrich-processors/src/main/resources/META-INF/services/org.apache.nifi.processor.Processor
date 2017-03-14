@@ -13,5 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-org.apache.nifi.processors.GeoEnrichIP
-org.apache.nifi.processors.enrich.QueryDNS
+#org.apache.nifi.processors.GeoEnrichIP
+#org.apache.nifi.processors.enrich.QueryDNS
