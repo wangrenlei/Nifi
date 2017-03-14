@@ -22,6 +22,24 @@
 	<artifactId>nifi-spider-processors</artifactId>
 	<packaging>jar</packaging>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<lib.url>http://115.29.10.140/nifilib</lib.url>
+	</properties>
+	<repositories>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</releases>
+			<id>weiresearch</id>
+			<name>nifi</name>
+			<url>http://115.29.10.140/nifilib</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+	
 	<dependencies>
 		<dependency>
 			<groupId>weiresearch</groupId>
@@ -105,5 +123,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	
 </project>
