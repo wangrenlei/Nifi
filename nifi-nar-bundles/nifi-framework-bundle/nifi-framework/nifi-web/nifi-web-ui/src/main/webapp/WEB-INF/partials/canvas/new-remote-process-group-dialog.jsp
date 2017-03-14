@@ -15,18 +15,20 @@
   limitations under the License.
 --%>
 <%@ page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div id="new-remote-process-group-dialog" class="hidden large-dialog">
     <div class="dialog-content">
         <div class="setting">
-            <div class="setting-name">URL</div>
+            <div class="setting-name"><fmt:message key="partials.canvas.new-remote-process-group-dialog.URL"/></div>
             <div class="setting-field">
                 <input id="new-remote-process-group-uri" type="text" placeholder="https://remotehost:8080/nifi"/>
             </div>
         </div>
         <div class="setting">
             <div class="setting-name">
-                Transport Protocol
-                <div class="fa fa-question-circle" alt="Info" title="Specify the transport protocol to use for this Remote Process Group communication."></div>
+                <fmt:message key="partials.canvas.new-remote-process-group-dialog.Transport"/>
+                <fmt:message key="partials.canvas.disable-controller-service-dialog.Scope.setting-field.title" var="Transport"/>
+                <div class="fa fa-question-circle" alt="Info" title="${Transport}"></div>
             </div>
             <div class="setting-field">
                 <div id="new-remote-process-group-transport-protocol-combo"></div>
@@ -35,8 +37,9 @@
         <div class="setting">
             <div class="remote-process-group-proxy-host-setting">
                 <div class="setting-name">
-                    HTTP Proxy server hostname
-                    <div class="fa fa-question-circle" alt="Info" title="Specify the proxy server's hostname to use. If not specified, HTTP traffics are sent directly to the target NiFi instance."></div>
+                    <fmt:message key="partials.canvas.new-remote-process-group-dialog.HttpProxyHostname"/>
+                    <fmt:message key="partials.canvas.disable-controller-service-dialog.Scope.setting-field.title" var="HttpProxyHostname"/>
+                    <div class="fa fa-question-circle" alt="Info" title="${HttpProxyHostname}"></div>
                 </div>
                 <div class="setting-field">
                     <input type="text" class="small-setting-input" id="new-remote-process-group-proxy-host"/>
@@ -44,8 +47,9 @@
             </div>
             <div class="remote-process-group-proxy-port-setting">
                 <div class="setting-name">
-                    HTTP Proxy server port
-                    <div class="fa fa-question-circle" alt="Info" title="Specify the proxy server's port number, optional. If not specified, default port 80 will be used."></div>
+                    <fmt:message key="partials.canvas.new-remote-process-group-dialog.HttpProxyPort"/>
+                    <fmt:message key="partials.canvas.disable-controller-service-dialog.Scope.setting-field.title" var="HttpProxyPort"/>
+                    <div class="fa fa-question-circle" alt="Info" title="${HttpProxyPort}"></div>
                 </div>
                 <div class="setting-field">
                     <input type="text" class="small-setting-input" id="new-remote-process-group-proxy-port"/>
@@ -56,8 +60,9 @@
         <div class="setting">
             <div class="remote-process-group-proxy-user-setting">
                 <div class="setting-name">
-                    HTTP Proxy user
-                    <div class="fa fa-question-circle" alt="Info" title="Specify an user name to connect to the proxy server, optional."></div>
+                    <fmt:message key="partials.canvas.new-remote-process-group-dialog.HttpProxyUser"/>
+                    <fmt:message key="partials.canvas.disable-controller-service-dialog.Scope.setting-field.title" var="HttpProxyUser"/>
+                    <div class="fa fa-question-circle" alt="Info" title="${HttpProxyUser}"></div>
                 </div>
                 <div class="setting-field">
                     <input type="text" class="small-setting-input" id="new-remote-process-group-proxy-user"/>
@@ -65,8 +70,9 @@
             </div>
             <div class="remote-process-group-proxy-password-setting">
                 <div class="setting-name">
-                    HTTP Proxy password
-                    <div class="fa fa-question-circle" alt="Info" title="Specify an user password to connect to the proxy server, optional."></div>
+                    <fmt:message key="partials.canvas.new-remote-process-group-dialog.HttpProxyPassword"/>
+                    <fmt:message key="partials.canvas.disable-controller-service-dialog.Scope.setting-field.title" var="HttpProxyPassword"/>
+                    <div class="fa fa-question-circle" alt="Info" title="${HttpProxyPassword}"></div>
                 </div>
                 <div class="setting-field">
                     <input type="password" class="small-setting-input" id="new-remote-process-group-proxy-password"/>
@@ -77,8 +83,9 @@
         <div class="setting">
             <div class="remote-process-group-timeout-setting">
                 <div class="setting-name">
-                    Communications timeout
-                    <div class="fa fa-question-circle" alt="Info" title="When communication with this remote process group takes longer than this amount of time, it will timeout."></div>
+                    <fmt:message key="partials.canvas.new-remote-process-group-dialog.timeout"/>
+                    <fmt:message key="partials.canvas.disable-controller-service-dialog.Scope.setting-field.title" var="timeout"/>
+                    <div class="fa fa-question-circle" alt="Info" title="${timeout}"></div>
                 </div>
                 <div class="setting-field">
                     <input type="text" class="small-setting-input" id="new-remote-process-group-timeout"/>
@@ -86,8 +93,9 @@
             </div>
             <div class="remote-process-group-yield-duration-setting">
                 <div class="setting-name">
-                    Yield duration
-                    <div class="fa fa-question-circle" alt="Info" title="When communication with this remote process group fails, it will not be scheduled again until this amount of time elapses."></div>
+                    <fmt:message key="partials.canvas.new-remote-process-group-dialog.yield"/>
+                    <fmt:message key="partials.canvas.disable-controller-service-dialog.Scope.setting-field.title" var="yield"/>
+                    <div class="fa fa-question-circle" alt="Info" title="${yield}"></div>
                 </div>
                 <div class="setting-field">
                     <input type="text" class="small-setting-input" id="new-remote-process-group-yield-duration"/>

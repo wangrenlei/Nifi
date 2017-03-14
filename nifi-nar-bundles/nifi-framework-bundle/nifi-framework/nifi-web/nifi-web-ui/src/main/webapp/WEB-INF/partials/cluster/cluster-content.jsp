@@ -15,15 +15,17 @@
   limitations under the License.
 --%>
 <%@ page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div id="cluster">
     <div id="cluster-header-and-filter">
-        <div id="cluster-header-text">NiFi Cluster</div>
+        <div id="cluster-header-text"><fmt:message key="partials.cluster.cluster-content.NiFiCluster"/></div>
         <div id="cluster-filter-controls">
             <div id="cluster-filter-stats" class="filter-status">
-                Displaying&nbsp;<span id="displayed-nodes"></span>&nbsp;of&nbsp;<span id="total-nodes"></span>
+                <fmt:message key="partials.cluster.cluster-content.Displaying"/>&nbsp;<span id="displayed-nodes"></span>&nbsp;<fmt:message key="partials.cluster.cluster-content.Of"/>&nbsp;<span id="total-nodes"></span>
             </div>
             <div id="cluster-filter-container" class="filter-container">
-                <input type="text" id="cluster-filter" class="filter" placeholder="Filter"/>
+            	<fmt:message key="partials.cluster.cluster-content.Filter" var="filter"/>
+                <input type="text" id="cluster-filter" class="filter" placeholder="${filter}"/>
                 <div id="cluster-filter-type" class="filter-type"></div>
             </div>
         </div>
@@ -31,9 +33,10 @@
     <div id="cluster-table"></div>
 </div>
 <div id="cluster-refresh-container">
-    <button id="refresh-button" class="refresh-button pointer fa fa-refresh" title="Refresh"></button>
+	<fmt:message key="partials.cluster.cluster-content.Refresh" var="refresh"/>
+    <button id="refresh-button" class="refresh-button pointer fa fa-refresh" title="${refresh}"></button>
     <div id="cluster-last-refreshed-container" class="last-refreshed-container">
-        Last updated:&nbsp;<span id="cluster-last-refreshed"></span>
+        <fmt:message key="partials.cluster.cluster-content.LastUpdated"/>&nbsp;<span id="cluster-last-refreshed"></span>
     </div>
     <div id="cluster-loading-container" class="loading-container"></div>
 </div>

@@ -15,6 +15,7 @@
   limitations under the License.
 --%>
 <%@ page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div id="nf-about">
     <div id="nf-about-pic-container">
         <div id="nf-about-pic"></div>
@@ -23,10 +24,7 @@
         <div id="nf-about-content">
             <span id="nf-version"></span>
             <p>
-                Apache NiFi is a framework to support highly scalable and flexible dataflows.
-                It can be run on on laptops up through clusters of enterprise class servers.
-                Instead of dictating a particular dataflow or behavior it empowers you to design your own
-                optimal dataflow tailored to your specific environment.
+                <fmt:message key="partials.canvas.about-dailog.nf-version"/>
             </p>
         </div>
     </div>

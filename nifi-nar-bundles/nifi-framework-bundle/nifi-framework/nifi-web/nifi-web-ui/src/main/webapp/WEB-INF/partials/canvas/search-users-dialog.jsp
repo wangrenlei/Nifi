@@ -15,9 +15,11 @@
   limitations under the License.
 --%>
 <%@ page contentType="text/html" pageEncoding="UTF-8" session="false" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <div id="search-users-dialog" class="hidden">
     <div class="dialog-content">
-        <input id="search-users-field" type="text" placeholder="User Identity"/>
+    	<fmt:message key="partials.canvas.search-users-dialog.search-users-field" var="useridentity"/>
+        <input id="search-users-field" type="text" placeholder="${useridentity}"/>
     </div>
 </div>
 <div id="search-users-results"></div>
