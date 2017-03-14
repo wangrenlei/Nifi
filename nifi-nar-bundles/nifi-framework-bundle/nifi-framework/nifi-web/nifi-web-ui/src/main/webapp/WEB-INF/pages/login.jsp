@@ -39,6 +39,7 @@
         <script type="text/javascript" src="js/jquery/qtip2/jquery.qtip.min.js"></script>
         <script type="text/javascript" src="js/jquery/ui-smoothness/jquery-ui-1.10.4.min.js"></script>
         <script type="text/javascript" src="js/nf/nf-namespace.js?${project.version}"></script>
+        <script type="text/javascript" src="js/nf/globalization/resources.js"></script>
         ${nf.login.script.tags}
     </head>
     <body class="login-body">
